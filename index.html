@@ -428,6 +428,60 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
   .stage{display:block;padding:0;gap:0;height:100dvh;overflow:hidden}
   .phone{width:100%;height:100dvh;flex:none;border-radius:0;box-shadow:none}
 }
+/* ── post-install chat + reward wallet (ci-) ── */
+.ci-cbar{display:flex;align-items:center;gap:10px;padding:8px 14px 12px;background:#fff;border-bottom:1px solid var(--stroke-pri);flex:0 0 auto}
+.ci-av{width:40px;height:40px;border-radius:var(--r-pill);border:2px solid var(--text-brand);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.ci-tt{flex:1}.ci-nm{font-size:14px;font-weight:600;color:var(--text-pri)}.ci-on{font-size:10px;color:var(--text-positive)}
+.ci-ic{cursor:pointer;display:flex;align-items:center}
+.ci-hdr{position:relative;width:40px;height:40px;display:none;align-items:center;justify-content:center;cursor:pointer}
+.ci-hdr.show{display:inline-flex}
+.ci-hdr .dot{position:absolute;top:3px;right:1px;min-width:16px;height:16px;padding:0 3px;border-radius:var(--r-pill);background:var(--text-positive);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid #fff}
+.ci-hdr.pulse{animation:cipulse 1.3s ease-out 3}
+@keyframes cipulse{0%{transform:scale(1)}30%{transform:scale(1.2)}60%{transform:scale(1)}}
+.ci-status{margin:10px 12px 4px;background:var(--bg-surface);border-radius:var(--r-card);box-shadow:0 4px 12px rgba(0,0,0,.12);padding:12px 14px;display:flex;align-items:center;gap:12px;flex:0 0 auto}
+.ci-hw{width:38px;height:38px;border-radius:12px;background:var(--stroke-pri);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.ci-home{font-size:12px;color:var(--text-sec)}.ci-stl{font-size:12px;color:var(--text-sec)}
+.ci-stv{font-size:16px;font-weight:700}.ci-stv.pending{color:#b85c00}.ci-stv.active{color:var(--text-positive)}
+.ci-thread{flex:1;overflow-y:auto;padding:10px 12px 14px;display:flex;flex-direction:column;gap:9px;scrollbar-width:none}
+.ci-thread::-webkit-scrollbar{display:none}
+.ci-day{align-self:center;background:#ebedf0;color:var(--text-sec);font-size:11px;font-weight:600;padding:4px 12px;border-radius:var(--r-pill)}
+.ci-hist{align-self:center;font-size:11px;color:var(--text-ter);margin:2px 0}
+.ci-row{display:flex}.ci-row.me{justify-content:flex-end}
+.ci-bub{max-width:82%;background:#eeeef1;border-radius:14px;padding:10px 12px 8px;font-size:14px;line-height:1.5;color:var(--text-pri)}
+.ci-bub.faded{opacity:.55}
+.ci-bub .tm{font-size:10.5px;color:var(--text-ter);text-align:right;margin-top:4px}
+.ci-bub .img{width:100%;border-radius:10px;margin-bottom:8px;display:block}
+.ci-bub.me{background:var(--bg-brand-focus);color:#fff}.ci-bub.me .tm{color:rgba(255,255,255,.8)}
+.ci-reward{max-width:88%;background:var(--bg-positive-pri);border:1px solid var(--stroke-positive);border-radius:var(--r-card);padding:14px}
+.ci-reward .top{display:flex;gap:10px;align-items:flex-start}
+.ci-reward .t{font-size:14px;font-weight:700;color:var(--text-positive)}
+.ci-reward .s{font-size:12.5px;color:var(--text-sec);margin-top:2px;line-height:1.45}
+.ci-reward .btn{margin-top:12px;background:var(--text-positive);color:#fff;text-align:center;font-size:14px;font-weight:600;padding:12px;border-radius:12px;cursor:pointer}
+.ci-typing{display:inline-flex;gap:4px;background:#eeeef1;border-radius:14px;padding:12px 14px}
+.ci-typing i{width:7px;height:7px;border-radius:var(--r-pill);background:#b6b9bf;animation:ciblink 1.2s infinite}
+.ci-typing i:nth-child(2){animation-delay:.2s}.ci-typing i:nth-child(3){animation-delay:.4s}
+@keyframes ciblink{0%,60%,100%{opacity:.3}30%{opacity:1}}
+.ci-field{display:flex;align-items:center;gap:10px;padding:12px;background:#fff;border-top:1px solid var(--stroke-pri);flex:0 0 auto}
+.ci-inp{flex:1;background:#fff;border:1px solid var(--stroke-pri);border-radius:var(--r-pill);padding:12px 16px;font-size:15px;color:var(--text-ter)}
+.ci-snd{width:46px;height:46px;border-radius:var(--r-pill);background:#b6b9bf;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.ci-filters{display:flex;gap:8px;padding:12px 0 4px}
+.ci-chip{font-size:12px;font-weight:600;padding:7px 12px;border-radius:var(--r-pill);border:1px solid var(--stroke-pri);background:var(--bg-surface);color:var(--text-sec)}
+.ci-chip.on{background:var(--text-pri);color:#fff;border-color:var(--text-pri)}
+.ci-rcard{background:var(--bg-surface);border:1px solid var(--stroke-pri);border-radius:var(--r-card);box-shadow:0 1px 3px rgba(0,0,0,.1);padding:14px;margin-top:12px}
+.ci-rcard.gone{background:#f5f6f7}
+.ci-rhead{display:flex;align-items:center;gap:12px}
+.ci-ric{width:44px;height:44px;border-radius:12px;background:var(--bg-positive-pri);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.ci-rcard.gone .ci-ric{background:#ebedf0}
+.ci-rt{font-size:15px;font-weight:700}.ci-rd{font-size:12px;color:var(--text-sec);margin-top:1px}
+.ci-rdays{font-size:20px;font-weight:700;color:var(--text-positive)}.ci-rcard.gone .ci-rdays{color:var(--text-ter)}
+.ci-rstat{font-size:11px;font-weight:600;padding:3px 10px;border-radius:var(--r-pill)}
+.ci-rstat.ready{background:var(--bg-positive-pri);color:var(--text-positive)}.ci-rstat.used{background:var(--bg-brand-subtle);color:var(--text-brand)}
+.ci-sline{margin-top:12px;padding-top:12px;border-top:1px solid var(--stroke-pri);display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-sec)}
+.ci-claim{margin-top:12px;width:100%;background:var(--text-positive);color:#fff;text-align:center;font-size:15px;font-weight:600;padding:13px;border-radius:12px;cursor:pointer}
+.ci-howto{background:#f5f6f7;border-radius:12px;padding:14px;margin-top:14px}
+.ci-howto .h{font-size:13px;font-weight:600;margin-bottom:8px}
+.ci-howto ol{margin:0;padding-left:18px}.ci-howto li{font-size:12.5px;color:var(--text-sec);margin-bottom:5px}
+.ci-install{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:24px;text-align:center}
 </style>
 </head>
 <body>
@@ -789,6 +843,10 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
         <div class="appbar-title"><h1 class="t3">अपना रिचार्ज चुनें</h1></div>
       </div>
       <div class="content">
+        <div style="background:var(--bg-positive-pri);border:1px solid var(--stroke-positive);border-radius:12px;padding:11px 13px;margin-bottom:14px;display:flex;gap:8px;align-items:flex-start">
+          <span style="font-size:16px;line-height:20px">🎁</span>
+          <div><div class="b2" style="font-weight:700;color:var(--text-positive)">हर प्लान पर मुफ्त दिन</div><div class="b3 sec mt4">इंस्टॉलेशन के बाद, जब आपका नेट खत्म होने वाला हो तब रिडीम करें।</div></div>
+        </div>
         <div id="planList"></div>
         <div class="pk-note">किसी भी प्लान पर टैप करें — पूरी जानकारी और पेमेंट खुलेगा।</div>
       </div>
@@ -838,43 +896,81 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
     <!-- 14 · CONFIRMED -->
     <section class="screen" data-s="confirmed">
       <div class="statusbar" data-sb></div>
-      <div class="content">
-        <div class="tickcircle" style="margin-top:12px"><svg width="44" height="44" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#008043" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="content" style="display:flex;flex-direction:column;justify-content:center">
+        <div class="tickcircle" style="margin-top:0"><svg width="44" height="44" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#008043" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <h2 class="t2 center mt16 rv d1">बुकिंग हो गई!</h2>
         <p class="b1 sec center mt4 rv d1" id="confSub">₹23 का रिचार्ज सफल हुआ।</p>
-
-        <div class="card mt20 rv d2" id="addrCard" style="border-color:var(--stroke-brand);background:#fff5fb">
-          <div class="b2" style="font-weight:600">घर का पूरा पता — टेक्नीशियन के लिए</div>
-          <div class="field mt8" style="background:#fff">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 11l8-7 8 7" stroke="#665e75" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10v10h12V10" stroke="#665e75" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <input id="confAddrIn" placeholder="मकान नंबर, गली / लैंडमार्क">
-          </div>
-          <div class="b3 ter mt8">राजीव कॉलोनी, सेक्टर 33 — बाकी ऊपर लिखें। बाद में बदल भी सकते हैं।</div>
-          <button class="cta mt12" id="addrSaveBtn" style="padding:10px 16px">पता भेजें</button>
-        </div>
-
-        <div class="card mt20 rv d2">
-          <div class="between"><span class="b2 sec">नंबर</span><span class="b1m" id="confPhone">98765 43210</span></div>
-          <div class="divider"></div>
-          <div class="between"><span class="b2 sec">नेट लगने का दिन</span><span class="b1m" id="confDate">27 जुलाई</span></div>
-          <div class="divider"></div>
-          <div class="between"><span class="b2 sec">आज दिया</span><span class="b1b brandc" id="confPaid">₹23</span></div>
-          <div class="divider"></div>
-          <div class="between"><span class="b2 sec">क्या मिला</span><span class="b1m" id="confPlan">1 दिन का रिचार्ज</span></div>
-          <div class="divider"></div>
-          <div class="between"><span class="b2 sec">बुकिंग नंबर</span><span class="b1m">WM-4823</span></div>
-        </div>
-
-        <div class="card mt16 rv d3" style="padding:4px 16px">
-          <div class="nextstep"><span class="n">1</span><div><div class="t">टेक्नीशियन <b id="confDate2">27 जुलाई</b> को आएगा</div><div class="s">आने से पहले आपके नंबर पर कॉल करेगा</div></div></div>
-          <div class="nextstep"><span class="n">2</span><div><div class="t">उसी दिन नेट चालू हो जाएगा</div><div class="s">बॉक्स लगाना और चालू करना — सब उसी विज़िट में</div></div></div>
-          <div class="nextstep"><span class="n">3</span><div><div class="t" id="confStart">आपका 1 दिन तब से शुरू होगा</div><div class="s">रिचार्ज का एक भी घंटा बेकार नहीं जाएगा</div></div></div>
-        </div>
-
-        <div class="card pos mt16 rv d4"><div class="row"><span>✅</span><span class="b2 pos" style="font-weight:600">नेट नहीं लगा तो पूरा पैसा वापस — अपने आप</span></div></div>
-        <p class="b3 ter center mt16 rv d4">कोई दिक्कत? कॉल करें — 1800-XXX-XXXX</p>
+        <div class="card pos mt20 rv d2"><div class="row"><span>🎁</span><span class="b2 pos" style="font-weight:600" id="confReward">आपके 1 मुफ्त दिन रिज़र्व — इंस्टॉलेशन के बाद रिडीम करें</span></div></div>
+        <p class="b2 sec center mt20 rv d3">अब बस टेक्नीशियन के लिए आपका पता चाहिए।</p>
       </div>
-      <div class="actions"><div class="linkrow" id="restartCta" style="color:var(--text-brand);font-weight:500;cursor:pointer">फिर से देखें</div></div>
+      <div class="actions"><button class="cta" data-go="address">पता भरें ›</button></div>
+    </section>
+
+    <!-- 15 · ADDRESS -->
+    <section class="screen" data-s="address">
+      <div class="statusbar" data-sb></div>
+      <div class="appbar">
+        <div class="appbar-row"><div class="appbar-icon" data-back><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12l6-6M5 12l6 6" stroke="#352d42" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="appbar-title"><h1 class="t3">आपका पता</h1></div>
+      </div>
+      <div class="content">
+        <p class="b2 sec">टेक्नीशियन को यहीं आना है — पूरा पता भरें ताकि नेट सही जगह लगे।</p>
+        <div class="card mt16" style="background:var(--bg-brand-subtle);border:none">
+          <div class="row"><span>📍</span><span class="b2" style="font-weight:600">राजीव कॉलोनी, सेक्टर 33, फरीदाबाद</span></div>
+          <div class="b3 ter mt4">आपकी लोकेशन से मिला — बाकी नीचे भरें</div>
+        </div>
+        <div class="field mt16">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 11l8-7 8 7" stroke="#665e75" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10v10h12V10" stroke="#665e75" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <input id="addr1" placeholder="मकान / फ्लैट नंबर, गली">
+        </div>
+        <div class="field mt12">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="10" r="3" stroke="#665e75" stroke-width="1.8"/><path d="M12 21c5-5 7-8 7-11a7 7 0 10-14 0c0 3 2 6 7 11z" stroke="#665e75" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          <input id="addr2" placeholder="लैंडमार्क (जैसे — पानी की टंकी के पास)">
+        </div>
+        <div class="card pos mt16" id="addrDone" style="display:none"><div class="row"><span>✅</span><span class="b2 pos" style="font-weight:600">पता सेव हो गया — अगला कदम: इंस्टॉलेशन</span></div></div>
+      </div>
+      <div class="actions"><button class="cta" id="addrCta">पता सेव करें</button></div>
+    </section>
+
+    <!-- 16 · INSTALLING -->
+    <section class="screen" data-s="installing">
+      <div class="statusbar" data-sb></div>
+      <div class="ci-install">
+        <div class="spinner"></div>
+        <div class="t3">इंस्टॉलेशन हो रहा है…</div>
+        <div class="b2 sec">टेक्नीशियन आपका नेट बॉक्स चालू कर रहा है।</div>
+      </div>
+    </section>
+
+    <!-- 17 · CHAT (net active + reward) -->
+    <section class="screen" data-s="chat">
+      <div class="statusbar" data-sb></div>
+      <div class="ci-cbar">
+        <div class="ci-av"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 13c2-5 6-5 9 0s7 5 9 0" stroke="#d9008d" stroke-width="2.2" stroke-linecap="round"/></svg></div>
+        <div class="ci-tt"><div class="ci-nm">व्योम</div><div class="ci-on">ऑनलाइन</div></div>
+        <div class="ci-hdr" id="ciHdr"><svg width="25" height="25" viewBox="0 0 24 24" fill="none"><rect x="3" y="8" width="18" height="4" rx="1" stroke="#d9008d" stroke-width="1.8"/><path d="M5 12v8h14v-8M12 8v12" stroke="#d9008d" stroke-width="1.8"/><path d="M12 8C11 5 9.5 4.5 8.5 5.2 7.3 6 8 8 12 8zM12 8c1-3 2.5-3.5 3.5-2.8C16.7 6 16 8 12 8z" stroke="#d9008d" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="dot">1</span></div>
+        <span class="ci-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 4h3l2 5-2 1a10 10 0 0 0 5 5l1-2 5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" stroke="#352d42" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+        <span class="ci-ic" style="margin-left:4px"><svg width="22" height="22" viewBox="0 0 24 24" fill="#352d42"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg></span>
+      </div>
+      <div class="ci-status">
+        <div class="ci-hw"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 11l8-6 8 6" stroke="#665e75" stroke-width="1.7" stroke-linecap="round"/><path d="M6 10v9h12v-9" stroke="#665e75" stroke-width="1.5"/><path d="M9.5 15a3.5 3.5 0 0 1 5 0M12 17.6v.01" stroke="#665e75" stroke-width="1.4" stroke-linecap="round"/></svg></div>
+        <div><div class="ci-home">घर का नेट: रमेश</div><div><span class="ci-stl">स्थिति: </span><span class="ci-stv pending" id="ciStv">सेटअप बाकी है</span></div></div>
+      </div>
+      <div class="ci-thread" id="ciThread"></div>
+      <div class="ci-field"><div class="ci-inp">यहाँ पूछें....</div><div class="ci-snd"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M3 11l18-7-7 18-3-7z"/></svg></div></div>
+    </section>
+
+    <!-- 18 · REWARDS WALLET -->
+    <section class="screen" data-s="rewards">
+      <div class="statusbar" data-sb></div>
+      <div class="appbar">
+        <div class="appbar-row"><div class="appbar-icon" data-back><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12l6-6M5 12l6 6" stroke="#352d42" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="appbar-title"><h1 class="t3">मेरे रिवॉर्ड</h1></div>
+      </div>
+      <div class="content">
+        <div class="ci-filters"><span class="ci-chip on">सभी</span><span class="ci-chip">उपलब्ध</span><span class="ci-chip">इस्तेमाल हो गए</span></div>
+        <div id="ciRlist"></div>
+      </div>
     </section>
 
   </div><!-- /phone -->
@@ -920,17 +1016,23 @@ const FLOW = [
   {id:'detail',      name:'रिचार्ज = बुकिंग',       group:'भुगतान'},
   {id:'paymethod',   name:'भुगतान का तरीका',        group:'भुगतान'},
   {id:'processing',  name:'भुगतान जाँच',           group:'भुगतान'},
-  {id:'confirmed',   name:'बुकिंग + आगे क्या',      group:'भुगतान'},
+  {id:'confirmed',   name:'बुकिंग हो गई',          group:'भुगतान'},
+  {id:'address',     name:'पता भरें',              group:'पता'},
+  {id:'installing',  name:'इंस्टॉलेशन हो रहा है',   group:'इंस्टॉलेशन'},
+  {id:'chat',        name:'नेट चालू + रिवॉर्ड',     group:'इंस्टॉलेशन'},
+  {id:'rewards',     name:'रिवॉर्ड वॉलेट',         group:'रिवॉर्ड'},
 ];
 
 /* ═══ plans ═══
-   1→1, 2→2, 7→7, 14→14+14 free (28, offer), 28→28 (no offer) */
+   Welcome Offer: every plan grants free bonus days, BANKED — redeemed later,
+   after installation, when the customer's net is running low. `welcome` = those
+   free days (not added to the paid net; held separately, like the live model). */
 const PLANS = [
-  {days:1,  cost:23,  span:'24 घंटे', bonus:0},
-  {days:2,  cost:45,  span:'48 घंटे', bonus:0},
-  {days:7,  cost:155, span:'1 हफ्ता', bonus:0},
-  {days:14, cost:305, span:'2 हफ्ते', bonus:14},   /* ← 14-day double-net offer */
-  {days:28, cost:565, span:'4 हफ्ते', bonus:0},
+  {days:1,  cost:23,  span:'24 घंटे', bonus:0, welcome:1},
+  {days:2,  cost:45,  span:'48 घंटे', bonus:0, welcome:2},
+  {days:7,  cost:155, span:'1 हफ्ता', bonus:0, welcome:7},
+  {days:14, cost:305, span:'2 हफ्ते', bonus:0, welcome:14},
+  {days:28, cost:565, span:'4 हफ्ते', bonus:0, welcome:28},
 ];
 const OFFER_IDX = PLANS.findIndex(p => p.bonus > 0);
 const netDays = p => p.days + p.bonus;
@@ -995,6 +1097,9 @@ function onEnter(id){
     case 'paymethod':  syncAmounts(); break;
     case 'processing': syncAmounts(); later(()=>goTo('confirmed'), 2200); break;
     case 'confirmed':  syncConfirmed(); break;
+    case 'installing': later(()=>goTo('chat'), 2200); break;
+    case 'chat':       enterChat(); break;
+    case 'rewards':    renderCiRewards(); break;
   }
 }
 
@@ -1095,25 +1200,20 @@ function initSlot(){
 
 /* ═══ PLAN LIST — V10 रिचार्ज → नेट (तुलना) ═══ */
 function planRowV10(i){
-  const p = PLANS[i], hero = i===OFFER_IDX;
-  const hi = state.highlightSmall && i < 3 ? ' hi blink' : '';   /* pink-blink 1/2/7 when redirected here */
-  return `<div class="pk two ${hero?'hero':''}${hi}" data-plan="${i}">
-    ${hero?'<span class="badge">⭐ सबसे बढ़िया — 14 दिन फ्री</span>':''}
+  const p = PLANS[i];
+  /* Welcome Offer applies to EVERY plan — free days, banked, redeemed later. */
+  return `<div class="pk two" data-plan="${i}">
     <div class="main">
-      <div class="col"><span class="k">रिचार्ज</span><span class="vv">${p.days} दिन</span></div>
-      <span class="arrow">→</span>
-      <div class="col ${hero?'hl':''}"><span class="k">नेट चलेगा</span><span class="vv">${netDays(p)} दिन${hero?' 🎁':''}</span></div>
-      <div class="price"><span class="go">${hero?'देखें ›':'चुनें ›'}</span></div>
+      <div class="col"><span class="k">${p.span}</span><span class="vv">${p.days} दिन</span></div>
+      <div class="price"><span class="pp">₹${p.cost}</span><span class="go">चुनें ›</span></div>
     </div>
-    ${hero?`<div class="bon">${TICK}<span>इसमें <b>14 दिन फ्री नेट</b> शामिल — कुल 28 दिन</span></div>`:''}
+    <div class="bon">${TICK}<span>🎁 <b>+${p.welcome} दिन फ्री</b> — इंस्टॉलेशन के बाद रिडीम करें</span></div>
   </div>`;
 }
 function renderPlanList(){
   const list = $('#planList');
-  /* 1 / 2 / 7 / 14(offer) / 28 — one clean uniform list, no prices */
   list.innerHTML = [0,1,2,3,4].map(planRowV10).join('');
   $$('#planList [data-plan]').forEach(el => el.onclick = ()=>{ state.plan = +el.dataset.plan; goTo('detail'); });
-  state.highlightSmall = false;   /* one-shot */
 }
 
 /* ═══ PLAN DETAIL — recharge = booking ═══ */
@@ -1152,22 +1252,14 @@ function heroPlain(p){
 }
 function renderDetail(){
   const p = cur(), el = $('#detailContent');
-  if(p.bonus > 0){
-    /* 14-day OFFER — green hero. "कम दिन चाहिए" → back to plan list, blink 1/2/7 */
-    el.innerHTML = heroOffer(p) + trustHTML(p) +
-      `<div class="linkrow rv d3" id="lessDays" style="color:var(--text-brand);font-weight:600;margin-top:4px">कम दिन चाहिए? 1 / 2 / 7 दिन चुनें <span>›</span></div>`;
-  } else {
-    /* 1 / 2 / 7 / 28-day — same uniform plain (blue) hero + a gentle offer nudge */
-    el.innerHTML = heroPlain(p) + trustHTML(p) +
-      `<div class="offercard-nudge rv d3" style="margin-top:14px;background:var(--bg-positive-pri);border:1px solid var(--stroke-positive);border-radius:12px;padding:12px 13px">
-        <div class="b2" style="font-weight:700;color:var(--text-positive)">💡 14 दिन का रिचार्ज करें, 28 दिन पाएँ</div>
-        <div class="b3 sec mt4">14 दिन पर 14 दिन एक्स्ट्रा फ्री — बिल्कुल मुफ़्त।
-          <span id="see14" style="color:var(--text-brand);font-weight:700;cursor:pointer">देखें ›</span></div>
-      </div>`;
-  }
+  /* Welcome Offer on every plan — free days, banked, redeemed later after install. */
+  el.innerHTML = heroPlain(p) +
+    `<div class="rv d2" style="margin-top:14px;background:var(--bg-positive-pri);border:1px solid var(--stroke-positive);border-radius:12px;padding:13px 14px">
+      <div class="b2" style="font-weight:800;color:var(--text-positive)">🎁 +${p.welcome} दिन फ्री — वेलकम ऑफर</div>
+      <div class="b3 sec mt4">ये मुफ्त दिन इंस्टॉलेशन के बाद आपके लिए रिज़र्व रहेंगे — जब नेट खत्म होने वाला हो, तब रिडीम करें।</div>
+    </div>` +
+    trustHTML(p);
   $('#detailCta').textContent = `₹${p.cost} का रिचार्ज करें`;
-  const less = $('#lessDays'); if(less) less.onclick = ()=>{ state.highlightSmall = true; goTo('plans', true); };
-  const see = $('#see14');     if(see)  see.onclick  = ()=>{ state.plan = OFFER_IDX; renderDetail(); };
 }
 
 /* no bottom sheet for plan selection — the plan list screen is the picker */
@@ -1181,21 +1273,86 @@ function syncAmounts(){
 }
 function syncConfirmed(){
   const p = cur();
-  $('#confPhone').textContent = fmtPhone(state.phone);
-  $('#confDate').textContent = state.date;
-  $('#confDate2').textContent = state.date;
-  $('#confPaid').textContent = `₹${p.cost}`;
-  $('#confPlan').textContent = p.bonus>0 ? `${netDays(p)} दिन का नेट (${p.days} + ${p.bonus} फ्री)` : `${p.days} दिन का रिचार्ज`;
   $('#confSub').textContent = `₹${p.cost} का रिचार्ज सफल हुआ।`;
-  $('#confStart').textContent = netDays(p)===1 ? 'आपका 1 दिन तब से शुरू होगा' : `आपके ${netDays(p)} दिन तब से शुरू होंगे`;
+  $('#confReward').textContent = `आपके ${p.welcome} मुफ्त दिन रिज़र्व — इंस्टॉलेशन के बाद रिडीम करें`;
 }
 function initAddrCapture(){
-  $('#addrSaveBtn').onclick = ()=>{
-    const a = $('#confAddrIn').value.trim(); if(!a) return;
-    const c = $('#addrCard');
-    c.style.borderColor = 'var(--stroke-positive)'; c.style.background = 'var(--bg-positive-pri)';
-    c.innerHTML = `<div class="row"><span>✅</span><span class="b2 pos" style="font-weight:600">पता मिल गया — टेक्नीशियन को भेज दिया</span></div>`;
+  const cta = $('#addrCta'); if(!cta) return;
+  cta.onclick = ()=>{
+    if(cta.dataset.saved){ goTo('installing'); return; }
+    const a = $('#addr1').value.trim(); if(!a){ $('#addr1').focus(); return; }
+    $('#addrDone').style.display = '';
+    cta.textContent = 'इंस्टॉलेशन शुरू करें ›';
+    cta.dataset.saved = '1';
   };
+}
+
+/* ═══ post-install chat + reward wallet ═══ */
+const CI_HERO='data:image/svg+xml;utf8,'+encodeURIComponent(
+  '<svg xmlns="http://www.w3.org/2000/svg" width="600" height="300" viewBox="0 0 600 300">'+
+  '<rect width="600" height="300" fill="#FFE6F6"/>'+
+  '<circle cx="300" cy="158" r="96" fill="#FFFFFF"/>'+
+  '<g stroke="#D9008D" stroke-width="11" fill="none" stroke-linecap="round">'+
+  '<path d="M252 172a68 68 0 0 1 96 0"/><path d="M272 194a40 40 0 0 1 56 0"/></g>'+
+  '<circle cx="300" cy="214" r="11" fill="#D9008D"/>'+
+  '<g fill="#008043"><circle cx="120" cy="70" r="8"/><circle cx="480" cy="90" r="10"/><circle cx="150" cy="238" r="9"/><circle cx="470" cy="240" r="7"/></g>'+
+  '<g fill="#FFB3E4"><circle cx="86" cy="150" r="7"/><circle cx="524" cy="164" r="8"/></g></svg>');
+const CI_VALIDITY = '24 सितंबर 2026';
+const ciGift = c => `<svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="8" width="18" height="4" rx="1" stroke="${c}" stroke-width="1.8"/><path d="M5 12v8h14v-8M12 8v12" stroke="${c}" stroke-width="1.8"/><path d="M12 8C11 5 9.5 4.5 8.5 5.2 7.3 6 8 8 12 8zM12 8c1-3 2.5-3.5 3.5-2.8C16.7 6 16 8 12 8z" stroke="${c}" stroke-width="1.6" stroke-linejoin="round"/></svg>`;
+const ciCheck = c => `<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="${c}" stroke-width="1.8"/><path d="M8 12l3 3 5-6" stroke="${c}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+let chatBuilt = false;
+const ciReward = { status:'ready' };
+const ciDays = () => cur().welcome;
+
+function ciNode(h){ const d=document.createElement('div'); d.innerHTML=h.trim(); return d.firstChild; }
+function ciAdd(n){ const t=$('#ciThread'); t.appendChild(n); later(()=>{ t.scrollTop=t.scrollHeight; }, 20); return n; }
+function ciBub(html,time,cls){ cls=cls||''; return ciNode(`<div class="ci-row ${cls.includes('me')?'me':''}"><div class="ci-bub ${cls}">${html}${time?`<div class="tm">${time}</div>`:''}</div></div>`); }
+function ciTyping(cb,ms){ const t=ciAdd(ciNode('<div class="ci-row"><div class="ci-typing"><i></i><i></i><i></i></div></div>')); later(()=>{ t.remove(); cb(); }, ms||1100); }
+
+function enterChat(){
+  if(chatBuilt) return;
+  chatBuilt = true; ciReward.status = 'ready';
+  const stv=$('#ciStv'); stv.textContent='सेटअप बाकी है'; stv.className='ci-stv pending';
+  $('#ciHdr').classList.remove('show','pulse');
+  const th=$('#ciThread'); th.innerHTML='';
+  th.appendChild(ciNode('<div class="ci-day">आज</div>'));
+  th.appendChild(ciNode('<div class="ci-hist">— पिछली बातचीत —</div>'));
+  ciAdd(ciBub('आपकी बुकिंग हो गई ✅ टेक्नीशियन आज आया — नेट बॉक्स लग गया।','10:02 AM','faded'));
+  ciTyping(()=>{
+    ciAdd(ciBub(`<img class="img" src="${CI_HERO}" alt=""><b>आपका नेट चालू हो गया है।</b><br>आपका नेट <b>${CI_VALIDITY}</b> तक बिना रुकावट चलता रहेगा।`,'10:15 AM'));
+    ciTyping(()=>{
+      ciAdd(ciBub('ये चार अंकों का हैप्पी कोड: <b>1244</b> — इंजीनियर से शेयर करें।','10:15 AM'));
+      later(()=>{
+        const h=$('#ciHdr'); h.classList.add('show'); h.classList.remove('pulse'); void h.offsetWidth; h.classList.add('pulse');
+        ciTyping(()=> ciAdd(ciRewardPrompt()), 1000);
+      }, 700);
+    }, 1300);
+  }, 1200);
+}
+function ciRewardPrompt(){
+  const n=ciNode(`<div class="ci-row"><div class="ci-reward"><div class="top"><span style="font-size:22px">🎁</span><div><div class="t">आपको एक रिवॉर्ड मिला है — ${ciDays()} मुफ्त दिन</div><div class="s">इंस्टॉलेशन पूरा हुआ! ये मुफ्त दिन अब आपके हैं। ऊपर 🎁 आइकन पर टैप करें, या यहीं से रिडीम करें।</div></div></div><div class="btn">रिवॉर्ड रिडीम करें</div></div></div>`);
+  n.querySelector('.btn').onclick = openRewards; return n;
+}
+function openRewards(){ renderCiRewards(); goTo('rewards'); }
+function renderCiRewards(){
+  const list=$('#ciRlist'); if(!list) return;
+  const gone = ciReward.status==='redeemed', d=ciDays();
+  const stat = gone?'<span class="ci-rstat used">इस्तेमाल हो गया</span>':'<span class="ci-rstat ready">रिडीम के लिए तैयार</span>';
+  const sline = gone
+    ? `<div class="ci-sline">${ciCheck('#d9008d')} आज इंटरनेट में जुड़ गया — नेट अब 8 अक्टूबर तक</div>`
+    : `<div class="ci-sline">${ciCheck('#008043')} इंस्टॉलेशन पर मिला — अभी रिडीम कर सकते हैं</div>`;
+  const action = gone?'':`<div class="ci-claim">अभी रिडीम करें — ${d} दिन जोड़ें</div>`;
+  const howto = gone?'':'<div class="ci-howto"><div class="h">कैसे काम करता है</div><ol><li>रिडीम करते ही दिन आपके नेट में जुड़ जाएँगे।</li><li>ये चालू प्लान के ऊपर लगेंगे।</li><li>चाहें तो बाद में, नेट खत्म होने पर भी रिडीम करें।</li></ol></div>';
+  list.innerHTML = `<div class="ci-rcard ${gone?'gone':''}"><div class="ci-rhead"><div class="ci-ric">${ciGift(gone?'#898296':'#008043')}</div><div style="flex:1"><div class="ci-rt">स्वागत रिवॉर्ड</div><div class="ci-rd">इंस्टॉलेशन पर मिला · 15 अगस्त</div></div><div style="text-align:right"><div class="ci-rdays">${d} दिन</div>${stat}</div></div>${sline}${action}</div>${howto}`;
+  const cb=list.querySelector('.ci-claim'); if(cb) cb.onclick = doCiRedeem;
+}
+function doCiRedeem(){
+  ciReward.status='redeemed'; renderCiRewards();
+  const stv=$('#ciStv'); stv.textContent='चालू है'; stv.className='ci-stv active';
+  $('#ciHdr').classList.remove('show');
+  goTo('chat', true);
+  ciAdd(ciBub('रिवॉर्ड रिडीम करें','10:18 AM','me'));
+  ciTyping(()=> ciAdd(ciBub(`हो गया! 🎉 <b>${ciDays()} मुफ्त दिन</b> आपके नेट में जुड़ गए। अब आपका नेट <b>8 अक्टूबर 2026</b> तक चलेगा।`,'10:18 AM')), 1100);
 }
 
 /* ═══ wiring ═══ */
@@ -1205,9 +1362,9 @@ $$('[data-go]').forEach(el => el.addEventListener('click', e=>{
 $$('[data-back]').forEach(el => el.addEventListener('click', prev));
 $('#btnNext').onclick = next;
 $('#btnPrev').onclick = prev;
-const restart = ()=>{ state.plan = 0; state.phone=''; go(0); };
+const restart = ()=>{ state.plan = 0; state.phone=''; chatBuilt=false; ciReward.status='ready'; go(0); };
 $('#btnRestart').onclick = restart;
-$('#restartCta').onclick = restart;
+const _rc = $('#restartCta'); if(_rc) _rc.onclick = restart;
 document.addEventListener('keydown', e=>{
   if(e.target.tagName === 'INPUT') return;
   if(e.key === 'Escape'){ closeSheets(); return; }
@@ -1218,6 +1375,7 @@ document.addEventListener('keydown', e=>{
 
 /* ═══ boot ═══ */
 buildRail(); initPhone(); initOtp(); initSlider(); initSlot(); initAddrCapture();
+const _ciHdr = $('#ciHdr'); if(_ciHdr) _ciHdr.onclick = openRewards;
 const q = new URLSearchParams(location.search);
 const start = FLOW.findIndex(f=>f.id===q.get('screen'));
 go(start>=0 ? start : 0);
