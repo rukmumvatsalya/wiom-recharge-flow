@@ -483,6 +483,18 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 .ci-howto .h{font-size:13px;font-weight:600;margin-bottom:8px}
 .ci-howto ol{margin:0;padding-left:18px}.ci-howto li{font-size:12.5px;color:var(--text-sec);margin-bottom:5px}
 .ci-install{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:24px;text-align:center}
+.ci-celebrate{position:absolute;inset:0;z-index:30;display:flex;align-items:center;justify-content:center;background:rgba(250,249,252,.74);transition:background .5s}
+.ci-celebrate.fly{background:rgba(250,249,252,0)}
+.ci-cele-wrap{position:relative;display:flex;flex-direction:column;align-items:center}
+.ci-cele-gift{font-size:66px;line-height:1;animation:celePop .6s cubic-bezier(.22,1.5,.36,1) both;transition:transform .72s cubic-bezier(.5,0,.15,1),opacity .72s;will-change:transform}
+@keyframes celePop{0%{transform:scale(0) rotate(-14deg)}70%{transform:scale(1.16) rotate(5deg)}100%{transform:scale(1) rotate(0)}}
+.ci-cele-text{font-size:18px;font-weight:800;color:var(--text-positive);margin-top:12px;animation:celeUp .5s .15s both}
+.ci-cele-days{font-size:13px;font-weight:700;color:var(--text-pri);margin-top:3px;animation:celeUp .5s .25s both}
+.ci-celebrate.fly .ci-cele-text,.ci-celebrate.fly .ci-cele-days,.ci-celebrate.fly .ci-confetti{opacity:0;transition:opacity .3s}
+@keyframes celeUp{0%{opacity:0;transform:translateY(10px)}100%{opacity:1;transform:translateY(0)}}
+.ci-confetti{position:absolute;left:50%;top:33px;width:0;height:0;pointer-events:none}
+.ci-confetti i{position:absolute;left:-4px;top:-4px;width:9px;height:9px;border-radius:2px;opacity:0;animation:celeBurst 1s ease-out both}
+@keyframes celeBurst{0%{opacity:0;transform:translate(0,0) scale(.4)}18%{opacity:1}100%{opacity:0;transform:translate(var(--cx),var(--cy)) rotate(190deg) scale(1)}}
 </style>
 </head>
 <body>
@@ -1304,11 +1316,36 @@ function ciAdd(n){ const t=$('#ciThread'); t.appendChild(n); later(()=>{ t.scrol
 function ciBub(html,time,cls){ cls=cls||''; return ciNode(`<div class="ci-row ${cls.includes('me')?'me':''}"><div class="ci-bub ${cls}">${html}${time?`<div class="tm">${time}</div>`:''}</div></div>`); }
 function ciTyping(cb,ms){ const t=ciAdd(ciNode('<div class="ci-row"><div class="ci-typing"><i></i><i></i><i></i></div></div>')); later(()=>{ t.remove(); cb(); }, ms||1100); }
 
+function playCelebration(cb){
+  const screen = document.querySelector('.screen[data-s="chat"]');
+  const hdr = $('#ciHdr');
+  hdr.classList.add('show'); hdr.style.visibility = 'hidden';   /* reserve layout to measure target */
+  let conf = '';
+  const cols = ['#D9008D','#008043','#EF9F27','#FFB2E4','#1461cc','#7F77DD'];
+  for(let i=0;i<16;i++){
+    const a=(i/16)*Math.PI*2, d=70+((i%3)*18);
+    conf += `<i style="--cx:${Math.round(Math.cos(a)*d)}px;--cy:${Math.round(Math.sin(a)*d)}px;background:${cols[i%cols.length]};animation-delay:${(i%5)*35}ms"></i>`;
+  }
+  const ov = ciNode(`<div class="ci-celebrate"><div class="ci-cele-wrap"><div class="ci-confetti">${conf}</div><div class="ci-cele-gift" id="celeGift">🎁</div><div class="ci-cele-text">रिवॉर्ड जुड़ गया!</div><div class="ci-cele-days">${ciDays()} मुफ्त दिन आपके रिवॉर्ड में</div></div></div>`);
+  screen.appendChild(ov);
+  const gift = ov.querySelector('#celeGift');
+  later(()=>{
+    const g=gift.getBoundingClientRect(), h=hdr.getBoundingClientRect();
+    ov.classList.add('fly');
+    gift.style.transform = `translate(${(h.left+h.width/2)-(g.left+g.width/2)}px, ${(h.top+h.height/2)-(g.top+g.height/2)}px) scale(.26)`;
+    later(()=>{
+      ov.remove(); hdr.style.visibility = '';
+      hdr.classList.remove('pulse'); void hdr.offsetWidth; hdr.classList.add('pulse');
+      cb && cb();
+    }, 720);
+  }, 1300);
+}
 function enterChat(){
   if(chatBuilt) return;
   chatBuilt = true; ciReward.status = 'ready';
   const stv=$('#ciStv'); stv.textContent='सेटअप बाकी है'; stv.className='ci-stv pending';
-  $('#ciHdr').classList.remove('show','pulse');
+  $('#ciHdr').classList.remove('show','pulse'); $('#ciHdr').style.visibility='';
+  document.querySelector('.screen[data-s="chat"]').querySelectorAll('.ci-celebrate').forEach(e=>e.remove());
   const th=$('#ciThread'); th.innerHTML='';
   th.appendChild(ciNode('<div class="ci-day">आज</div>'));
   th.appendChild(ciNode('<div class="ci-hist">— पिछली बातचीत —</div>'));
@@ -1318,8 +1355,7 @@ function enterChat(){
     ciTyping(()=>{
       ciAdd(ciBub('ये चार अंकों का हैप्पी कोड: <b>1244</b> — इंजीनियर से शेयर करें।','10:15 AM'));
       later(()=>{
-        const h=$('#ciHdr'); h.classList.add('show'); h.classList.remove('pulse'); void h.offsetWidth; h.classList.add('pulse');
-        ciTyping(()=> ciAdd(ciRewardPrompt()), 1000);
+        playCelebration(()=> ciTyping(()=> ciAdd(ciRewardPrompt()), 600));
       }, 700);
     }, 1300);
   }, 1200);
