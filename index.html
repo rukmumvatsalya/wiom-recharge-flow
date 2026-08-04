@@ -483,18 +483,32 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 .ci-howto .h{font-size:13px;font-weight:600;margin-bottom:8px}
 .ci-howto ol{margin:0;padding-left:18px}.ci-howto li{font-size:12.5px;color:var(--text-sec);margin-bottom:5px}
 .ci-install{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:24px;text-align:center}
-.ci-celebrate{position:absolute;inset:0;z-index:30;display:flex;align-items:center;justify-content:center;background:rgba(250,249,252,.74);transition:background .5s}
-.ci-celebrate.fly{background:rgba(250,249,252,0)}
-.ci-cele-wrap{position:relative;display:flex;flex-direction:column;align-items:center}
-.ci-cele-gift{font-size:66px;line-height:1;animation:celePop .6s cubic-bezier(.22,1.5,.36,1) both;transition:transform .72s cubic-bezier(.5,0,.15,1),opacity .72s;will-change:transform}
-@keyframes celePop{0%{transform:scale(0) rotate(-14deg)}70%{transform:scale(1.16) rotate(5deg)}100%{transform:scale(1) rotate(0)}}
-.ci-cele-text{font-size:18px;font-weight:800;color:var(--text-positive);margin-top:12px;animation:celeUp .5s .15s both}
-.ci-cele-days{font-size:13px;font-weight:700;color:var(--text-pri);margin-top:3px;animation:celeUp .5s .25s both}
-.ci-celebrate.fly .ci-cele-text,.ci-celebrate.fly .ci-cele-days,.ci-celebrate.fly .ci-confetti{opacity:0;transition:opacity .3s}
-@keyframes celeUp{0%{opacity:0;transform:translateY(10px)}100%{opacity:1;transform:translateY(0)}}
-.ci-confetti{position:absolute;left:50%;top:33px;width:0;height:0;pointer-events:none}
-.ci-confetti i{position:absolute;left:-4px;top:-4px;width:9px;height:9px;border-radius:2px;opacity:0;animation:celeBurst 1s ease-out both}
-@keyframes celeBurst{0%{opacity:0;transform:translate(0,0) scale(.4)}18%{opacity:1}100%{opacity:0;transform:translate(var(--cx),var(--cy)) rotate(190deg) scale(1)}}
+.ci-celebrate{position:absolute;inset:0;z-index:30;overflow:hidden;display:flex;align-items:center;justify-content:center;opacity:0;background:radial-gradient(130% 92% at 50% 40%, rgba(255,229,246,.92), rgba(250,249,252,.93) 58%, rgba(250,249,252,.96));animation:celeFade .4s ease forwards;will-change:opacity}
+.ci-celebrate.out{animation:celeFadeOut .55s ease forwards}
+@keyframes celeFade{to{opacity:1}}
+@keyframes celeFadeOut{to{opacity:0}}
+.ci-confetti-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:32}
+.ci-cele-wrap{position:relative;display:flex;flex-direction:column;align-items:center;margin-top:-5%}
+.ci-cele-rays{position:absolute;top:2px;left:50%;width:230px;height:230px;transform:translate(-50%,-50%) scale(.35);opacity:0;border-radius:50%;background:repeating-conic-gradient(from 0deg,rgba(217,0,141,.16) 0deg 6deg,transparent 6deg 22deg);-webkit-mask:radial-gradient(circle,transparent 34%,#000 37%,#000 64%,transparent 70%);mask:radial-gradient(circle,transparent 34%,#000 37%,#000 64%,transparent 70%);animation:celeRays 1.05s cubic-bezier(.2,.8,.2,1) .06s forwards}
+@keyframes celeRays{34%{opacity:1}100%{opacity:0;transform:translate(-50%,-50%) scale(1.32) rotate(26deg)}}
+.ci-cele-token{position:relative;width:108px;height:108px;border-radius:50%;background:var(--bg-brand-focus);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 36px rgba(217,0,141,.34);transform:scale(0);animation:celeToken .74s cubic-bezier(.34,1.56,.5,1) .08s forwards;will-change:transform}
+@keyframes celeToken{0%{transform:scale(0) rotate(-28deg)}58%{transform:scale(1.14) rotate(7deg)}78%{transform:scale(.95) rotate(-3deg)}100%{transform:scale(1) rotate(0)}}
+.ci-cele-token>svg{width:54px;height:54px;position:relative;z-index:2}
+.ci-cele-token .shine{position:absolute;inset:0;border-radius:50%;overflow:hidden;z-index:1}
+.ci-cele-token .shine::before{content:"";position:absolute;top:-30%;left:-70%;width:44%;height:160%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transform:rotate(18deg);animation:celeShine 1.15s ease .55s}
+@keyframes celeShine{from{left:-70%}to{left:135%}}
+.ci-cele-text{font-size:20px;font-weight:800;color:var(--text-pri);margin-top:22px;opacity:0;animation:celeRise .55s cubic-bezier(.2,.8,.2,1) .32s forwards}
+.ci-cele-days{margin-top:8px;font-size:13px;font-weight:700;color:var(--text-positive);background:var(--bg-positive-pri);padding:5px 14px;border-radius:var(--r-pill);opacity:0;animation:celeRise .55s cubic-bezier(.2,.8,.2,1) .44s forwards}
+@keyframes celeRise{0%{opacity:0;transform:translateY(16px)}100%{opacity:1;transform:translateY(0)}}
+.ci-celebrate.out .ci-cele-text,.ci-celebrate.out .ci-cele-days,.ci-celebrate.out .ci-cele-rays{opacity:0!important;transition:opacity .28s}
+.ci-hdr .ci-hdr-ring{position:absolute;inset:-5px;border-radius:50%;border:2px solid var(--text-brand);opacity:0;pointer-events:none}
+.ci-hdr.receive{animation:celeReceive .64s cubic-bezier(.34,1.56,.5,1)}
+@keyframes celeReceive{0%{transform:scale(.5)}55%{transform:scale(1.3)}100%{transform:scale(1)}}
+.ci-hdr.receive .ci-hdr-ring{animation:celeRing .64s ease-out}
+@keyframes celeRing{0%{opacity:.75;transform:scale(.5)}100%{opacity:0;transform:scale(1.95)}}
+.ci-hdr.receive .dot{animation:celeDotPop .45s cubic-bezier(.34,1.7,.5,1) .2s both}
+@keyframes celeDotPop{0%{transform:scale(0)}100%{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.ci-cele-token,.ci-cele-rays,.ci-cele-text,.ci-cele-days{animation-duration:.01ms!important}}
 </style>
 </head>
 <body>
@@ -956,7 +970,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
       <div class="ci-cbar">
         <div class="ci-av"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 13c2-5 6-5 9 0s7 5 9 0" stroke="#d9008d" stroke-width="2.2" stroke-linecap="round"/></svg></div>
         <div class="ci-tt"><div class="ci-nm">व्योम</div><div class="ci-on">ऑनलाइन</div></div>
-        <div class="ci-hdr" id="ciHdr"><svg width="25" height="25" viewBox="0 0 24 24" fill="none"><rect x="3" y="8" width="18" height="4" rx="1" stroke="#d9008d" stroke-width="1.8"/><path d="M5 12v8h14v-8M12 8v12" stroke="#d9008d" stroke-width="1.8"/><path d="M12 8C11 5 9.5 4.5 8.5 5.2 7.3 6 8 8 12 8zM12 8c1-3 2.5-3.5 3.5-2.8C16.7 6 16 8 12 8z" stroke="#d9008d" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="dot">1</span></div>
+        <div class="ci-hdr" id="ciHdr"><span class="ci-hdr-ring"></span><svg width="25" height="25" viewBox="0 0 24 24" fill="none"><rect x="3" y="8" width="18" height="4" rx="1" stroke="#d9008d" stroke-width="1.8"/><path d="M5 12v8h14v-8M12 8v12" stroke="#d9008d" stroke-width="1.8"/><path d="M12 8C11 5 9.5 4.5 8.5 5.2 7.3 6 8 8 12 8zM12 8c1-3 2.5-3.5 3.5-2.8C16.7 6 16 8 12 8z" stroke="#d9008d" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="dot">1</span></div>
         <span class="ci-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 4h3l2 5-2 1a10 10 0 0 0 5 5l1-2 5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" stroke="#352d42" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
         <span class="ci-ic" style="margin-left:4px"><svg width="22" height="22" viewBox="0 0 24 24" fill="#352d42"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg></span>
       </div>
@@ -1316,36 +1330,98 @@ function ciAdd(n){ const t=$('#ciThread'); t.appendChild(n); later(()=>{ t.scrol
 function ciBub(html,time,cls){ cls=cls||''; return ciNode(`<div class="ci-row ${cls.includes('me')?'me':''}"><div class="ci-bub ${cls}">${html}${time?`<div class="tm">${time}</div>`:''}</div></div>`); }
 function ciTyping(cb,ms){ const t=ciAdd(ciNode('<div class="ci-row"><div class="ci-typing"><i></i><i></i><i></i></div></div>')); later(()=>{ t.remove(); cb(); }, ms||1100); }
 
+const GIFT_WHITE = '<svg viewBox="0 0 24 24" fill="none"><rect x="3.4" y="8.4" width="17.2" height="4" rx="1" stroke="#fff" stroke-width="1.7"/><path d="M5 12.4v7.6h14v-7.6M12 8.4v11.6" stroke="#fff" stroke-width="1.7"/><path d="M12 8.4C11 5.5 9.6 5 8.6 5.6 7.4 6.4 8.1 8.4 12 8.4zM12 8.4c1-2.9 2.4-3.4 3.4-2.8C16.6 6.4 15.9 8.4 12 8.4z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/></svg>';
+const easeInOutCubic = p => p<.5 ? 4*p*p*p : 1-Math.pow(-2*p+2,3)/2;
+
+function burstConfetti(canvas, ox, oy){
+  const ctx = canvas.getContext('2d');
+  const rect = canvas.getBoundingClientRect();
+  const dpr = Math.min(window.devicePixelRatio||1, 2);
+  canvas.width = rect.width*dpr; canvas.height = rect.height*dpr; ctx.scale(dpr,dpr);
+  const W = rect.width, H = rect.height;
+  const cols = ['#D9008D','#008043','#EF9F27','#FFB2E4','#1461CC','#7F77DD','#FFD166','#F0997B'];
+  const parts = [];
+  for(let i=0;i<120;i++){
+    const ang = Math.random()*Math.PI*2, spd = 3.4+Math.random()*7.6;
+    parts.push({ x:ox, y:oy, vx:Math.cos(ang)*spd, vy:Math.sin(ang)*spd-(3+Math.random()*3.5),
+      g:0.16+Math.random()*0.12, drag:0.985+Math.random()*0.01, size:5+Math.random()*6,
+      col:cols[(Math.random()*cols.length)|0], rot:Math.random()*Math.PI*2, vr:(Math.random()-.5)*0.34,
+      shape: Math.random()<0.55?'r':'c', life:0, ttl:66+Math.random()*46, sway:Math.random()*Math.PI*2 });
+  }
+  let f=0;
+  function tick(){
+    if(!document.body.contains(canvas)) return;
+    ctx.clearRect(0,0,W,H);
+    let alive=0;
+    for(const p of parts){
+      if(p.life>p.ttl) continue;
+      p.life++; p.vy+=p.g; p.vx*=p.drag; p.sway+=0.1;
+      p.x+=p.vx + Math.sin(p.sway)*0.4; p.y+=p.vy; p.rot+=p.vr;
+      const a = Math.max(0, 1 - Math.max(0,(p.life-p.ttl*0.6))/(p.ttl*0.4));
+      if(p.y < H+24){ alive++;
+        ctx.save(); ctx.globalAlpha=a; ctx.translate(p.x,p.y); ctx.rotate(p.rot); ctx.fillStyle=p.col;
+        if(p.shape==='r') ctx.fillRect(-p.size/2,-p.size/3,p.size,p.size*0.62);
+        else { ctx.beginPath(); ctx.arc(0,0,p.size*0.45,0,6.3); ctx.fill(); }
+        ctx.restore();
+      }
+    }
+    f++;
+    if(f<220 && alive>0) requestAnimationFrame(tick); else canvas.remove();
+  }
+  requestAnimationFrame(tick);
+}
+
+function flyToHeader(token, hdr, done, reduce){
+  const screen = document.querySelector('.screen[data-s="chat"]');
+  const t = token.getBoundingClientRect(), h = hdr.getBoundingClientRect();
+  const sx=t.left+t.width/2, sy=t.top+t.height/2, ex=h.left+h.width/2, ey=h.top+h.height/2;
+  const endScale = (h.width*0.94)/t.width;
+  token.style.animation='none'; token.style.margin='0'; token.style.zIndex='40';
+  token.style.position='fixed'; token.style.left=t.left+'px'; token.style.top=t.top+'px';
+  screen.appendChild(token);   /* survive overlay fade */
+  const finish = ()=>{ token.remove(); done(); };
+  if(reduce){ token.style.transition='transform .3s ease, opacity .3s'; requestAnimationFrame(()=>{ token.style.transform=`translate(${ex-sx}px,${ey-sy}px) scale(${endScale})`; token.style.opacity='0'; }); later(finish,300); return; }
+  const cx=(sx+ex)/2+(ex>=sx?24:-24), cy=Math.min(sy,ey)-72, dur=700; let start=null;
+  function frame(ts){
+    if(!document.body.contains(token)){ done(); return; }
+    if(start===null) start=ts;
+    const p=Math.min(1,(ts-start)/dur), e=easeInOutCubic(p);
+    const x=(1-e)*(1-e)*sx+2*(1-e)*e*cx+e*e*ex, y=(1-e)*(1-e)*sy+2*(1-e)*e*cy+e*e*ey;
+    token.style.transform=`translate(${x-sx}px, ${y-sy}px) scale(${1+(endScale-1)*e})`;
+    if(p>0.82) token.style.opacity=String(Math.max(0,1-(p-0.82)/0.18));
+    if(p<1) requestAnimationFrame(frame); else finish();
+  }
+  requestAnimationFrame(frame);
+}
+
 function playCelebration(cb){
   const screen = document.querySelector('.screen[data-s="chat"]');
   const hdr = $('#ciHdr');
+  const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches;
   hdr.classList.add('show'); hdr.style.visibility = 'hidden';   /* reserve layout to measure target */
-  let conf = '';
-  const cols = ['#D9008D','#008043','#EF9F27','#FFB2E4','#1461cc','#7F77DD'];
-  for(let i=0;i<16;i++){
-    const a=(i/16)*Math.PI*2, d=70+((i%3)*18);
-    conf += `<i style="--cx:${Math.round(Math.cos(a)*d)}px;--cy:${Math.round(Math.sin(a)*d)}px;background:${cols[i%cols.length]};animation-delay:${(i%5)*35}ms"></i>`;
-  }
-  const ov = ciNode(`<div class="ci-celebrate"><div class="ci-cele-wrap"><div class="ci-confetti">${conf}</div><div class="ci-cele-gift" id="celeGift">🎁</div><div class="ci-cele-text">रिवॉर्ड जुड़ गया!</div><div class="ci-cele-days">${ciDays()} मुफ्त दिन आपके रिवॉर्ड में</div></div></div>`);
+  const ov = ciNode(`<div class="ci-celebrate"><div class="ci-cele-wrap"><div class="ci-cele-rays"></div><div class="ci-cele-token"><span class="shine"></span>${GIFT_WHITE}</div><div class="ci-cele-text">रिवॉर्ड जुड़ गया!</div><div class="ci-cele-days">${ciDays()} मुफ्त दिन आपके रिवॉर्ड में</div></div></div>`);
   screen.appendChild(ov);
-  const gift = ov.querySelector('#celeGift');
+  const token = ov.querySelector('.ci-cele-token');
+  if(!reduce){
+    const canvas = document.createElement('canvas'); canvas.className='ci-confetti-canvas'; screen.appendChild(canvas);
+    const tr = token.getBoundingClientRect(), sr = screen.getBoundingClientRect();
+    later(()=> burstConfetti(canvas, tr.left+tr.width/2-sr.left, tr.top+tr.height/2-sr.top), 220);
+  }
   later(()=>{
-    const g=gift.getBoundingClientRect(), h=hdr.getBoundingClientRect();
-    ov.classList.add('fly');
-    gift.style.transform = `translate(${(h.left+h.width/2)-(g.left+g.width/2)}px, ${(h.top+h.height/2)-(g.top+g.height/2)}px) scale(.26)`;
-    later(()=>{
-      ov.remove(); hdr.style.visibility = '';
-      hdr.classList.remove('pulse'); void hdr.offsetWidth; hdr.classList.add('pulse');
+    ov.classList.add('out');
+    flyToHeader(token, hdr, ()=>{
+      ov.remove(); hdr.style.visibility='';
+      hdr.classList.remove('receive'); void hdr.offsetWidth; hdr.classList.add('receive');
       cb && cb();
-    }, 720);
-  }, 1300);
+    }, reduce);
+  }, reduce ? 900 : 1550);
 }
 function enterChat(){
   if(chatBuilt) return;
   chatBuilt = true; ciReward.status = 'ready';
   const stv=$('#ciStv'); stv.textContent='सेटअप बाकी है'; stv.className='ci-stv pending';
   $('#ciHdr').classList.remove('show','pulse'); $('#ciHdr').style.visibility='';
-  document.querySelector('.screen[data-s="chat"]').querySelectorAll('.ci-celebrate').forEach(e=>e.remove());
+  document.querySelector('.screen[data-s="chat"]').querySelectorAll('.ci-celebrate, .ci-confetti-canvas, .ci-cele-token').forEach(e=>e.remove());
   const th=$('#ciThread'); th.innerHTML='';
   th.appendChild(ciNode('<div class="ci-day">आज</div>'));
   th.appendChild(ciNode('<div class="ci-hist">— पिछली बातचीत —</div>'));
