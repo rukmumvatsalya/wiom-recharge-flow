@@ -277,6 +277,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 .ticklabels span{font-size:11px;color:var(--text-ter);width:44px;text-align:center}
 .ticklabels span:first-child{text-align:left}.ticklabels span:last-child{text-align:right}
 .ticklabels span.on{color:#1461cc;font-weight:700}
+.ticklabels .tickfree{display:block;font-size:10px;line-height:14px;color:var(--text-positive);font-weight:700;margin-top:3px;font-style:normal}
 .costcard{background:#fff;border:1px solid var(--stroke-pri);border-radius:var(--r-card);overflow:hidden}
 .costcard .cc-head{background:var(--purple-soft);text-align:center;padding:11px 16px;font-size:13px;font-weight:700;color:var(--purple)}
 .costrow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;font-size:15px}
@@ -795,7 +796,8 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
           <p class="b2 sec mt8">यही व्योम की खास बात है। कोई महीने का बंधन नहीं।</p>
         </div>
         <div class="daybox rv d2" style="margin-top:28px;margin-bottom:22px">
-          <div class="dayval"><b id="dayNum">1</b><span>दिन</span></div>
+          <div class="dayval"><b id="dayNum">1</b><span>दिन का रिचार्ज</span></div>
+          <div id="dayOffer" style="margin-top:12px;display:inline-flex;align-items:center;gap:6px;background:var(--bg-positive-pri);border:1px solid var(--stroke-positive);color:var(--text-positive);font-size:13px;font-weight:700;padding:7px 14px;border-radius:var(--r-pill)"><span style="font-size:15px">🎁</span> +1 दिन फ्री — इंस्टॉलेशन के बाद रिडीम करें</div>
         </div>
         <div class="sliderwrap rv d2">
           <div class="track" id="track"><i class="trackfill" id="trackFill" style="width:0%"></i></div>
@@ -1170,10 +1172,11 @@ function initSlider(){
     const dot = document.createElement('i'); dot.className='tick';
     dot.style.left = (i/(PLANS.length-1))*100 + '%'; track.appendChild(dot);
   });
-  labels.innerHTML = PLANS.map(p=>`<span>${p.days} दिन</span>`).join('');
+  labels.innerHTML = PLANS.map(p=>`<span>${p.days} दिन<i class="tickfree">+${p.welcome} फ्री</i></span>`).join('');
   const render = ()=>{
-    const v = +slider.value;
-    $('#dayNum').textContent = PLANS[v].days;
+    const v = +slider.value, p = PLANS[v];
+    $('#dayNum').textContent = p.days;
+    $('#dayOffer').innerHTML = `<span style="font-size:15px">🎁</span> +${p.welcome} दिन फ्री — इंस्टॉलेशन के बाद रिडीम करें`;
     $$('#tickLabels span').forEach((s,i)=> s.classList.toggle('on', i===v));
     $('#trackFill').style.width = (v/(PLANS.length-1)*100) + '%';
   };
