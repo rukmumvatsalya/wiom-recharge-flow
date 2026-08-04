@@ -797,7 +797,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
         </div>
         <div class="daybox rv d2" style="margin-top:28px;margin-bottom:22px">
           <div class="dayval"><b id="dayNum">1</b><span>दिन का रिचार्ज</span></div>
-          <div id="dayOffer" style="margin-top:12px;display:inline-flex;align-items:center;gap:6px;background:var(--bg-positive-pri);border:1px solid var(--stroke-positive);color:var(--text-positive);font-size:13px;font-weight:700;padding:7px 14px;border-radius:var(--r-pill)"><span style="font-size:15px">🎁</span> +1 दिन फ्री — इंस्टॉलेशन के बाद रिडीम करें</div>
+          <div id="dayOffer" style="margin-top:12px;display:inline-flex;align-items:center;gap:6px;background:var(--bg-positive-pri);border:1px solid var(--stroke-positive);color:var(--text-positive);font-size:13px;font-weight:700;padding:7px 14px;border-radius:var(--r-pill)"><span style="font-size:15px">🎁</span> +1 दिन फ्री — जब चाहें रिडीम करें</div>
         </div>
         <div class="sliderwrap rv d2">
           <div class="track" id="track"><i class="trackfill" id="trackFill" style="width:0%"></i></div>
@@ -841,7 +841,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
       <div class="content">
         <div style="background:var(--bg-positive-pri);border:1px solid var(--stroke-positive);border-radius:12px;padding:11px 13px;margin-bottom:14px;display:flex;gap:8px;align-items:flex-start">
           <span style="font-size:16px;line-height:20px">🎁</span>
-          <div><div class="b2" style="font-weight:700;color:var(--text-positive)">हर प्लान पर मुफ्त दिन</div><div class="b3 sec mt4">इंस्टॉलेशन के बाद, जब आपका नेट खत्म होने वाला हो तब रिडीम करें।</div></div>
+          <div><div class="b2" style="font-weight:700;color:var(--text-positive)">हर प्लान पर मुफ्त दिन</div><div class="b3 sec mt4">बुकिंग होते ही आपके रिवॉर्ड में — जब चाहें रिडीम करें।</div></div>
         </div>
         <div id="planList"></div>
         <div class="pk-note">किसी भी प्लान पर टैप करें — पूरी जानकारी और पेमेंट खुलेगा।</div>
@@ -896,7 +896,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
         <div class="tickcircle" style="margin-top:0"><svg width="44" height="44" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#008043" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <h2 class="t2 center mt16 rv d1">बुकिंग हो गई!</h2>
         <p class="b1 sec center mt4 rv d1" id="confSub">₹23 का रिचार्ज सफल हुआ।</p>
-        <div class="card pos mt20 rv d2"><div class="row"><span>🎁</span><span class="b2 pos" style="font-weight:600" id="confReward">आपके 1 मुफ्त दिन रिज़र्व — इंस्टॉलेशन के बाद रिडीम करें</span></div></div>
+        <div class="card pos mt20 rv d2"><div class="row"><span>🎁</span><span class="b2 pos" style="font-weight:600" id="confReward">1 मुफ्त दिन आपके रिवॉर्ड में जुड़ गए — जब चाहें रिडीम करें</span></div></div>
         <p class="b2 sec center mt20 rv d3">अब बस टेक्नीशियन के लिए आपका पता चाहिए।</p>
       </div>
       <div class="actions"><button class="cta" data-go="address">पता भरें ›</button></div>
@@ -1176,7 +1176,7 @@ function initSlider(){
   const render = ()=>{
     const v = +slider.value, p = PLANS[v];
     $('#dayNum').textContent = p.days;
-    $('#dayOffer').innerHTML = `<span style="font-size:15px">🎁</span> +${p.welcome} दिन फ्री — इंस्टॉलेशन के बाद रिडीम करें`;
+    $('#dayOffer').innerHTML = `<span style="font-size:15px">🎁</span> +${p.welcome} दिन फ्री — जब चाहें रिडीम करें`;
     $$('#tickLabels span').forEach((s,i)=> s.classList.toggle('on', i===v));
     $('#trackFill').style.width = (v/(PLANS.length-1)*100) + '%';
   };
@@ -1202,7 +1202,7 @@ function planRowV10(i){
       <div class="col"><span class="k">${p.span}</span><span class="vv">${p.days} दिन</span></div>
       <div class="price"><span class="pp">₹${p.cost}</span><span class="go">चुनें ›</span></div>
     </div>
-    <div class="bon">${TICK}<span>🎁 <b>+${p.welcome} दिन फ्री</b> — इंस्टॉलेशन के बाद रिडीम करें</span></div>
+    <div class="bon">${TICK}<span>🎁 <b>+${p.welcome} दिन फ्री</b> — जब चाहें रिडीम करें</span></div>
   </div>`;
 }
 function renderPlanList(){
@@ -1251,7 +1251,7 @@ function renderDetail(){
   el.innerHTML = heroPlain(p) +
     `<div class="rv d2" style="margin-top:14px;background:var(--bg-positive-pri);border:1px solid var(--stroke-positive);border-radius:12px;padding:13px 14px">
       <div class="b2" style="font-weight:800;color:var(--text-positive)">🎁 +${p.welcome} दिन फ्री — वेलकम ऑफर</div>
-      <div class="b3 sec mt4">ये मुफ्त दिन इंस्टॉलेशन के बाद आपके लिए रिज़र्व रहेंगे — जब नेट खत्म होने वाला हो, तब रिडीम करें।</div>
+      <div class="b3 sec mt4">बुकिंग होते ही आपके रिवॉर्ड में जुड़ जाएँगे — जब चाहें रिडीम करें।</div>
     </div>` +
     trustHTML(p);
   $('#detailCta').textContent = `₹${p.cost} का रिचार्ज करें`;
@@ -1269,7 +1269,7 @@ function syncAmounts(){
 function syncConfirmed(){
   const p = cur();
   $('#confSub').textContent = `₹${p.cost} का रिचार्ज सफल हुआ।`;
-  $('#confReward').textContent = `आपके ${p.welcome} मुफ्त दिन रिज़र्व — इंस्टॉलेशन के बाद रिडीम करें`;
+  $('#confReward').textContent = `${p.welcome} मुफ्त दिन आपके रिवॉर्ड में जुड़ गए — जब चाहें रिडीम करें`;
 }
 function initAddrCapture(){
   const cta = $('#addrCta'); if(!cta) return;
@@ -1325,7 +1325,7 @@ function enterChat(){
   }, 1200);
 }
 function ciRewardPrompt(){
-  const n=ciNode(`<div class="ci-row"><div class="ci-reward"><div class="top"><span style="font-size:22px">🎁</span><div><div class="t">आपको एक रिवॉर्ड मिला है — ${ciDays()} मुफ्त दिन</div><div class="s">इंस्टॉलेशन पूरा हुआ! ये मुफ्त दिन अब आपके हैं। ऊपर 🎁 आइकन पर टैप करें, या यहीं से रिडीम करें।</div></div></div><div class="btn">रिवॉर्ड रिडीम करें</div></div></div>`);
+  const n=ciNode(`<div class="ci-row"><div class="ci-reward"><div class="top"><span style="font-size:22px">🎁</span><div><div class="t">आपके रिवॉर्ड तैयार हैं — ${ciDays()} मुफ्त दिन</div><div class="s">बुकिंग पर मिले — जब चाहें रिडीम करें। ऊपर 🎁 आइकन पर टैप करें, या यहीं से रिडीम करें।</div></div></div><div class="btn">रिवॉर्ड रिडीम करें</div></div></div>`);
   n.querySelector('.btn').onclick = openRewards; return n;
 }
 function openRewards(){ renderCiRewards(); goTo('rewards'); }
@@ -1335,10 +1335,10 @@ function renderCiRewards(){
   const stat = gone?'<span class="ci-rstat used">इस्तेमाल हो गया</span>':'<span class="ci-rstat ready">रिडीम के लिए तैयार</span>';
   const sline = gone
     ? `<div class="ci-sline">${ciCheck('#d9008d')} आज इंटरनेट में जुड़ गया — नेट अब 8 अक्टूबर तक</div>`
-    : `<div class="ci-sline">${ciCheck('#008043')} इंस्टॉलेशन पर मिला — अभी रिडीम कर सकते हैं</div>`;
+    : `<div class="ci-sline">${ciCheck('#008043')} बुकिंग पर मिला — जब चाहें रिडीम करें</div>`;
   const action = gone?'':`<div class="ci-claim">अभी रिडीम करें — ${d} दिन जोड़ें</div>`;
-  const howto = gone?'':'<div class="ci-howto"><div class="h">कैसे काम करता है</div><ol><li>रिडीम करते ही दिन आपके नेट में जुड़ जाएँगे।</li><li>ये चालू प्लान के ऊपर लगेंगे।</li><li>चाहें तो बाद में, नेट खत्म होने पर भी रिडीम करें।</li></ol></div>';
-  list.innerHTML = `<div class="ci-rcard ${gone?'gone':''}"><div class="ci-rhead"><div class="ci-ric">${ciGift(gone?'#898296':'#008043')}</div><div style="flex:1"><div class="ci-rt">स्वागत रिवॉर्ड</div><div class="ci-rd">इंस्टॉलेशन पर मिला · 15 अगस्त</div></div><div style="text-align:right"><div class="ci-rdays">${d} दिन</div>${stat}</div></div>${sline}${action}</div>${howto}`;
+  const howto = gone?'':'<div class="ci-howto"><div class="h">कैसे काम करता है</div><ol><li>रिडीम करते ही दिन आपके नेट में जुड़ जाएँगे।</li><li>बुकिंग के बाद जब चाहें रिडीम करें।</li></ol></div>';
+  list.innerHTML = `<div class="ci-rcard ${gone?'gone':''}"><div class="ci-rhead"><div class="ci-ric">${ciGift(gone?'#898296':'#008043')}</div><div style="flex:1"><div class="ci-rt">स्वागत रिवॉर्ड</div><div class="ci-rd">बुकिंग पर मिला · 15 अगस्त</div></div><div style="text-align:right"><div class="ci-rdays">${d} दिन</div>${stat}</div></div>${sline}${action}</div>${howto}`;
   const cb=list.querySelector('.ci-claim'); if(cb) cb.onclick = doCiRedeem;
 }
 function doCiRedeem(){
