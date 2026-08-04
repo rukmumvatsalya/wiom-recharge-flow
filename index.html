@@ -486,12 +486,6 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 </head>
 <body>
 
-<div class="modetoggle">
-  <span class="mt-lbl">एंट्री</span>
-  <button data-mode="A" class="on">A · इनलाइन नंबर</button>
-  <button data-mode="B">B · दो-CTA + स्क्रीन</button>
-</div>
-
 <aside class="rail">
   <h1>Wiom · Full Journey</h1>
   <div class="sub">Zomato-landing → Recharge booking · v1</div>
@@ -1002,9 +996,7 @@ document.querySelectorAll('[data-sb]').forEach(el => el.innerHTML = STATUSBAR);
 /* ═══ flow ═══ */
 const FLOW = [
   {id:'splash',      name:'Splash · Loading',      group:'Entry'},
-  {id:'index',       name:'इंडेक्स — वर्शन चुनें',   group:'Entry'},
-  {id:'landing',     name:'लैंडिंग + एंट्री',        group:'Entry'},
-  {id:'phone',       name:'नंबर स्क्रीन (मोड B)',    group:'Entry'},
+  {id:'landing',     name:'रिचार्ज वाला घर का नेट',  group:'Entry'},
   {id:'otp',         name:'OTP वेरिफ़िकेशन',        group:'Entry'},
   {id:'permission',  name:'Location permission',   group:'सर्विस'},
   {id:'checking',    name:'नेट चेक कर रहे हैं',      group:'सर्विस'},
@@ -1087,7 +1079,7 @@ const prev = ()=> go(state.idx-1, true);
 
 function onEnter(id){
   switch(id){
-    case 'splash':     later(()=>goTo('index'), 1800); break;
+    case 'splash':     later(()=>goTo('landing'), 1800); break;
     case 'landing':    applyEntryMode(); break;
     case 'phone':      $('#inPhone2').focus(); break;
     case 'otp':        enterOtp(); break;
