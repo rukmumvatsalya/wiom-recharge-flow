@@ -525,6 +525,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 .ci-bs-plan .nm{flex:1;font-size:15px;font-weight:700}
 .ci-bs-plan .pr{font-size:15px;font-weight:700}
 .ci-bs-cta{margin-top:6px;width:100%;background:var(--bg-brand-focus);color:#fff;border:none;font-size:16px;font-weight:700;padding:15px;border-radius:16px;cursor:pointer;font-family:inherit}
+.ci-hdr.nopending .dot{display:none}
 </style>
 </head>
 <body>
@@ -1339,8 +1340,8 @@ const CI_VALIDITY = '24 सितंबर 2026';
 const ciGift = c => `<svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="8" width="18" height="4" rx="1" stroke="${c}" stroke-width="1.8"/><path d="M5 12v8h14v-8M12 8v12" stroke="${c}" stroke-width="1.8"/><path d="M12 8C11 5 9.5 4.5 8.5 5.2 7.3 6 8 8 12 8zM12 8c1-3 2.5-3.5 3.5-2.8C16.7 6 16 8 12 8z" stroke="${c}" stroke-width="1.6" stroke-linejoin="round"/></svg>`;
 const ciCheck = c => `<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="${c}" stroke-width="1.8"/><path d="M8 12l3 3 5-6" stroke="${c}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 let chatBuilt = false;
-const ciReward = { status:'ready' };
-const ciDays = () => cur().welcome;
+const ciReward = { status:'ready', days:null, source:'बुकिंग पर मिला · 15 अगस्त' };
+const ciDays = () => (ciReward.days != null ? ciReward.days : cur().welcome);
 
 function ciNode(h){ const d=document.createElement('div'); d.innerHTML=h.trim(); return d.firstChild; }
 function ciAdd(n){ const t=$('#ciThread'); t.appendChild(n); later(()=>{ t.scrollTop=t.scrollHeight; }, 20); return n; }
@@ -1415,7 +1416,7 @@ function playCelebration(cb){
   const screen = document.querySelector('.screen[data-s="chat"]');
   const hdr = $('#ciHdr');
   const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches;
-  hdr.classList.add('show'); hdr.style.visibility = 'hidden';   /* reserve layout to measure target */
+  hdr.classList.add('show'); hdr.style.visibility = '';   /* header is persistent — reward flies into it */
   const ov = ciNode(`<div class="ci-celebrate"><div class="ci-cele-wrap"><div class="ci-cele-rays"></div><div class="ci-cele-token"><span class="shine"></span>${GIFT_WHITE}</div><div class="ci-cele-text">रिवॉर्ड जुड़ गया!</div><div class="ci-cele-days">${ciDays()} मुफ्त दिन आपके रिवॉर्ड में</div></div></div>`);
   screen.appendChild(ov);
   const token = ov.querySelector('.ci-cele-token');
@@ -1427,7 +1428,7 @@ function playCelebration(cb){
   later(()=>{
     ov.classList.add('out');
     flyToHeader(token, hdr, ()=>{
-      ov.remove(); hdr.style.visibility='';
+      ov.remove();
       hdr.classList.remove('receive'); void hdr.offsetWidth; hdr.classList.add('receive');
       cb && cb();
     }, reduce);
@@ -1435,10 +1436,10 @@ function playCelebration(cb){
 }
 function enterChat(){
   if(chatBuilt) return;
-  chatBuilt = true; ciReward.status = 'ready';
+  chatBuilt = true; ciReward.status = 'ready'; ciReward.days = cur().welcome; ciReward.source = 'बुकिंग पर मिला · 15 अगस्त';
   const stv=$('#ciStv'); stv.textContent='सेटअप बाकी है'; stv.className='ci-stv pending';
-  $('#ciHdr').classList.remove('show','pulse'); $('#ciHdr').style.visibility='';
-  document.querySelector('.screen[data-s="chat"]').querySelectorAll('.ci-celebrate, .ci-confetti-canvas, .ci-cele-token').forEach(e=>e.remove());
+  $('#ciHdr').classList.add('show'); $('#ciHdr').classList.remove('receive','nopending'); $('#ciHdr').style.visibility='';
+  document.querySelector('.screen[data-s="chat"]').querySelectorAll('.ci-celebrate, .ci-confetti-canvas, .ci-cele-token, .ci-bs-back').forEach(e=>e.remove());
   const th=$('#ciThread'); th.innerHTML='';
   th.appendChild(ciNode('<div class="ci-day">आज</div>'));
   th.appendChild(ciNode('<div class="ci-hist">— पिछली बातचीत —</div>'));
@@ -1473,14 +1474,14 @@ function renderCiRewards(){
   const howto = gone?'':(rc
     ? '<div class="ci-howto"><div class="h">कैसे काम करता है</div><ol><li>रिडीम पर टैप करें — कोई भी प्लान रिचार्ज करें।</li><li>रिचार्ज के साथ आपके मुफ्त दिन अपने आप जुड़ जाएँगे।</li></ol></div>'
     : '<div class="ci-howto"><div class="h">कैसे काम करता है</div><ol><li>रिडीम करते ही दिन आपके नेट में जुड़ जाएँगे।</li><li>बुकिंग के बाद जब चाहें रिडीम करें।</li></ol></div>');
-  list.innerHTML = `<div class="ci-rcard ${gone?'gone':''}"><div class="ci-rhead"><div class="ci-ric">${ciGift(gone?'#898296':'#008043')}</div><div style="flex:1"><div class="ci-rt">स्वागत रिवॉर्ड</div><div class="ci-rd">बुकिंग पर मिला · 15 अगस्त</div></div><div style="text-align:right"><div class="ci-rdays">${d} दिन</div>${stat}</div></div>${sline}${action}</div>${howto}`;
+  list.innerHTML = `<div class="ci-rcard ${gone?'gone':''}"><div class="ci-rhead"><div class="ci-ric">${ciGift(gone?'#898296':'#008043')}</div><div style="flex:1"><div class="ci-rt">स्वागत रिवॉर्ड</div><div class="ci-rd">${ciReward.source}</div></div><div style="text-align:right"><div class="ci-rdays">${d} दिन</div>${stat}</div></div>${sline}${action}</div>${howto}`;
   const cb=list.querySelector('.ci-claim'); if(cb) cb.onclick = doCiRedeem;
 }
 function doCiRedeem(){
   if(state.rewardMode === 'recharge'){ openRechargeSheet(); return; }
   ciReward.status='redeemed'; renderCiRewards();
   const stv=$('#ciStv'); stv.textContent='चालू है'; stv.className='ci-stv active';
-  $('#ciHdr').classList.remove('show');
+  $('#ciHdr').classList.add('nopending');
   goTo('chat', true);
   ciAdd(ciBub('रिवॉर्ड रिडीम करें','10:18 AM','me'));
   ciTyping(()=> ciAdd(ciBub(`हो गया! 🎉 <b>${ciDays()} मुफ्त दिन</b> आपके नेट में जुड़ गए। अब आपका नेट <b>8 अक्टूबर 2026</b> तक चलेगा।`,'10:18 AM')), 1100);
@@ -1489,9 +1490,9 @@ function doCiRedeem(){
 function openRechargeSheet(){
   const scr = document.querySelector('.screen.active') || document.querySelector('.screen[data-s="chat"]');
   const d = ciDays();
-  const opts = [{days:'7 दिन',price:155},{days:'14 दिन',price:305},{days:'28 दिन',price:565}];
+  const opts = [{label:'7 दिन',dayNum:7,price:155},{label:'14 दिन',dayNum:14,price:305},{label:'28 दिन',dayNum:28,price:565}];
   let sel = 1;
-  const rows = opts.map((o,i)=>`<div class="ci-bs-plan${i===sel?' sel':''}" data-i="${i}"><span class="ci-bs-radio"></span><div class="nm">${o.days}</div><div class="pr">₹${o.price}</div></div>`).join('');
+  const rows = opts.map((o,i)=>`<div class="ci-bs-plan${i===sel?' sel':''}" data-i="${i}"><span class="ci-bs-radio"></span><div class="nm">${o.label}</div><div class="pr">₹${o.price}</div></div>`).join('');
   const bs = ciNode(`<div class="ci-bs-back"><div class="ci-bs"><div class="ci-bs-grab"></div><h3>रिडीम करने के लिए रिचार्ज करें</h3><div class="sub">कोई भी प्लान चुनें — आपके ${d} मुफ्त दिन इसी रिचार्ज पर अपने आप जुड़ जाएँगे।</div><div class="ci-bs-reward">🎁 +${d} मुफ्त दिन इस रिचार्ज पर</div><div class="ci-bs-list">${rows}</div><button class="ci-bs-cta"></button></div></div>`);
   scr.appendChild(bs);
   const cta = bs.querySelector('.ci-bs-cta');
@@ -1502,12 +1503,17 @@ function openRechargeSheet(){
   cta.onclick = ()=>{ bs.remove(); doRechargeRedeem(opts[sel]); };
 }
 function doRechargeRedeem(opt){
-  ciReward.status='redeemed'; renderCiRewards();
+  const oldDays = ciDays();
+  /* old reward applied on this recharge; the recharge itself earns a fresh reward */
+  ciReward.status='ready'; ciReward.days=opt.dayNum; ciReward.source='पिछले रिचार्ज पर मिला · 20 अगस्त'; renderCiRewards();
   const stv=$('#ciStv'); stv.textContent='चालू है'; stv.className='ci-stv active';
-  $('#ciHdr').classList.remove('show');
+  const h=$('#ciHdr'); h.classList.add('show'); h.classList.remove('nopending','receive'); void h.offsetWidth; h.classList.add('receive');
   goTo('chat', true);
-  ciAdd(ciBub(`${opt.days} का रिचार्ज करूँ`,'10:18 AM','me'));
-  ciTyping(()=> ciAdd(ciBub(`रिचार्ज हो गया! 🎉 आपका <b>${opt.days}</b> का नया प्लान चालू — और आपके <b>${ciDays()} मुफ्त दिन</b> भी अपने आप जुड़ गए। आपका नेट अब <b>8 अक्टूबर 2026</b> तक चलेगा।`,'10:18 AM')), 1200);
+  ciAdd(ciBub(`${opt.label} का रिचार्ज करूँ`,'10:18 AM','me'));
+  ciTyping(()=>{
+    ciAdd(ciBub(`रिचार्ज हो गया! 🎉 आपका <b>${opt.label}</b> का नया प्लान चालू — और आपके <b>${oldDays} मुफ्त दिन</b> भी अपने आप जुड़ गए। आपका नेट अब <b>8 अक्टूबर 2026</b> तक चलेगा।`,'10:18 AM'));
+    ciTyping(()=> ciAdd(ciBub(`और खास बात 🎁 — इस रिचार्ज पर आपको <b>${opt.dayNum} मुफ्त दिन</b> का नया रिवॉर्ड भी मिला! अगले रिचार्ज पर इस्तेमाल करें।`,'10:19 AM')), 950);
+  }, 1200);
 }
 
 /* ═══ wiring ═══ */
@@ -1518,7 +1524,7 @@ $$('[data-mode]').forEach(el => el.addEventListener('click', ()=>{ state.rewardM
 $$('[data-back]').forEach(el => el.addEventListener('click', prev));
 $('#btnNext').onclick = next;
 $('#btnPrev').onclick = prev;
-const restart = ()=>{ state.plan = 0; state.phone=''; chatBuilt=false; ciReward.status='ready'; go(0); };
+const restart = ()=>{ state.plan = 0; state.phone=''; chatBuilt=false; ciReward.status='ready'; ciReward.days=null; ciReward.source='बुकिंग पर मिला · 15 अगस्त'; const _h=$('#ciHdr'); if(_h)_h.classList.remove('show','nopending','receive'); go(0); };
 $('#btnRestart').onclick = restart;
 const _rc = $('#restartCta'); if(_rc) _rc.onclick = restart;
 document.addEventListener('keydown', e=>{
