@@ -1469,7 +1469,7 @@ function renderCiRewards(){
   const rc = state.rewardMode === 'recharge';
   const sline = gone
     ? `<div class="ci-sline">${ciCheck('#d9008d')} आज इंटरनेट में जुड़ गया — नेट अब 8 अक्टूबर तक</div>`
-    : `<div class="ci-sline">${ciCheck('#008043')} बुकिंग पर मिला — ${rc?'अगले रिचार्ज पर रिडीम करें':'जब चाहें रिडीम करें'}</div>`;
+    : `<div class="ci-sline">${ciCheck('#008043')} ${rc?'अगले रिचार्ज पर रिडीम करें':'जब चाहें रिडीम करें'}</div>`;
   const action = gone?'':`<div class="ci-claim">${rc?'रिडीम करें':`अभी रिडीम करें — ${d} दिन जोड़ें`}</div>`;
   const howto = gone?'':(rc
     ? '<div class="ci-howto"><div class="h">कैसे काम करता है</div><ol><li>रिडीम पर टैप करें — कोई भी प्लान रिचार्ज करें।</li><li>रिचार्ज के साथ आपके मुफ्त दिन अपने आप जुड़ जाएँगे।</li></ol></div>'
@@ -1507,12 +1507,12 @@ function doRechargeRedeem(opt){
   /* old reward applied on this recharge; the recharge itself earns a fresh reward */
   ciReward.status='ready'; ciReward.days=opt.dayNum; ciReward.source='पिछले रिचार्ज पर मिला · 20 अगस्त'; renderCiRewards();
   const stv=$('#ciStv'); stv.textContent='चालू है'; stv.className='ci-stv active';
-  const h=$('#ciHdr'); h.classList.add('show'); h.classList.remove('nopending','receive'); void h.offsetWidth; h.classList.add('receive');
+  $('#ciHdr').classList.add('show'); $('#ciHdr').classList.remove('nopending');
   goTo('chat', true);
   ciAdd(ciBub(`${opt.label} का रिचार्ज करूँ`,'10:18 AM','me'));
   ciTyping(()=>{
     ciAdd(ciBub(`रिचार्ज हो गया! 🎉 आपका <b>${opt.label}</b> का नया प्लान चालू — और आपके <b>${oldDays} मुफ्त दिन</b> भी अपने आप जुड़ गए। आपका नेट अब <b>8 अक्टूबर 2026</b> तक चलेगा।`,'10:18 AM'));
-    ciTyping(()=> ciAdd(ciBub(`और खास बात 🎁 — इस रिचार्ज पर आपको <b>${opt.dayNum} मुफ्त दिन</b> का नया रिवॉर्ड भी मिला! अगले रिचार्ज पर इस्तेमाल करें।`,'10:19 AM')), 950);
+    later(()=> playCelebration(()=> ciTyping(()=> ciAdd(ciBub(`🎁 इस रिचार्ज पर <b>${opt.dayNum} मुफ्त दिन</b> का नया रिवॉर्ड आपके रिवॉर्ड पेज में जुड़ गया — अगले रिचार्ज पर इस्तेमाल करें।`,'10:19 AM')), 500)), 800);
   }, 1200);
 }
 
