@@ -524,8 +524,10 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 .ci-bs-plan.sel .ci-bs-radio::after{content:"";position:absolute;inset:3px;background:var(--bg-brand-focus);border-radius:50%}
 .ci-bs-plan .nm{flex:1;display:flex;flex-direction:column;gap:5px}
 .ci-bs-plan .nm .d{font-size:15px;font-weight:700}
+.ci-bs-plan .nm .d .rw{color:var(--text-positive)}
 .ci-bs-free{font-size:11px;font-weight:700;color:var(--text-positive);background:var(--bg-positive-pri);border:1px solid var(--stroke-positive);padding:2px 9px;border-radius:100px;align-self:flex-start}
-.ci-bs-plan .pr{font-size:15px;font-weight:700}
+.ci-bs-plan .pr{font-size:15px;font-weight:700;text-align:right;display:flex;flex-direction:column;align-items:flex-end;flex:0 0 auto}
+.ci-bs-plan .pr .net{font-size:11px;font-weight:700;color:var(--text-positive);margin-top:3px;white-space:nowrap}
 .ci-bs-cta{margin-top:6px;width:100%;background:var(--bg-brand-focus);color:#fff;border:none;font-size:16px;font-weight:700;padding:15px;border-radius:16px;cursor:pointer;font-family:inherit}
 .ci-hdr.nopending .dot{display:none}
 </style>
@@ -1493,11 +1495,11 @@ function openRechargeSheet(){
   const scr = document.querySelector('.screen.active') || document.querySelector('.screen[data-s="chat"]');
   const d = ciDays();
   let sel = 3; /* default 14-day */
-  const rows = PLANS.map((p,i)=>`<div class="ci-bs-plan${i===sel?' sel':''}" data-i="${i}"><span class="ci-bs-radio"></span><div class="nm"><span class="d">${p.days} दिन</span><span class="ci-bs-free">🎁 +${p.welcome} दिन फ्री</span></div><div class="pr">₹${p.cost}</div></div>`).join('');
-  const bs = ciNode(`<div class="ci-bs-back"><div class="ci-bs"><div class="ci-bs-grab"></div><h3>रिडीम करने के लिए रिचार्ज करें</h3><div class="sub">कोई भी प्लान चुनें — आपके ${d} मुफ्त दिन इसी रिचार्ज पर जुड़ेंगे, और हर प्लान पर नए मुफ्त दिन भी मिलेंगे।</div><div class="ci-bs-list">${rows}</div><button class="ci-bs-cta"></button></div></div>`);
+  const rows = PLANS.map((p,i)=>`<div class="ci-bs-plan${i===sel?' sel':''}" data-i="${i}"><span class="ci-bs-radio"></span><div class="nm"><span class="d">${p.days} दिन<span class="rw"> + ${d} दिन रिवॉर्ड</span></span><span class="ci-bs-free">🎁 +${p.welcome} दिन फ्री अगली बार</span></div><div class="pr">₹${p.cost}<span class="net">= ${p.days + d} दिन नेट</span></div></div>`).join('');
+  const bs = ciNode(`<div class="ci-bs-back"><div class="ci-bs"><div class="ci-bs-grab"></div><h3>रिडीम करने के लिए रिचार्ज करें</h3><div class="sub">आपका <b>${d} दिन</b> का रिवॉर्ड किसी भी प्लान के साथ जुड़ जाएगा — प्लान + रिवॉर्ड, दोनों मिलेंगे।</div><div class="ci-bs-list">${rows}</div><button class="ci-bs-cta"></button></div></div>`);
   scr.appendChild(bs);
   const cta = bs.querySelector('.ci-bs-cta');
-  const upd = ()=>{ cta.textContent = `₹${PLANS[sel].cost} रिचार्ज करें + ${PLANS[sel].welcome} दिन फ्री`; };
+  const upd = ()=>{ cta.textContent = `₹${PLANS[sel].cost} रिचार्ज करें · ${PLANS[sel].days} + ${d} दिन नेट`; };
   bs.querySelectorAll('.ci-bs-plan').forEach(p=> p.onclick = ()=>{ sel=+p.dataset.i; bs.querySelectorAll('.ci-bs-plan').forEach(x=>x.classList.remove('sel')); p.classList.add('sel'); upd(); });
   upd();
   bs.onclick = e=>{ if(e.target===bs) bs.remove(); };
