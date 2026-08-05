@@ -532,36 +532,25 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 .ci-bs-note{display:flex;align-items:center;justify-content:center;gap:7px;text-align:center;font-size:12.5px;font-weight:600;color:var(--text-positive);background:var(--bg-positive-pri);border-radius:10px;padding:10px;margin:4px 0 14px}
 .ci-bs-cta{margin-top:6px;width:100%;background:var(--bg-brand-focus);color:#fff;border:none;font-size:16px;font-weight:700;padding:15px;border-radius:16px;cursor:pointer;font-family:inherit}
 .ci-hdr.nopending .dot{display:none}
-.rt-full{position:absolute;inset:0;z-index:50;overflow:hidden;background:#fff;display:flex;flex-direction:column;opacity:0;animation:rtFade .35s ease forwards}
+.rt-full{position:absolute;inset:0;z-index:50;overflow:hidden;background:linear-gradient(180deg,#FFE7F4 0%,#FFF4FA 44%,#FAF9FC 100%);display:flex;flex-direction:column;opacity:0;animation:rtFade .35s ease forwards}
 @keyframes rtFade{to{opacity:1}}
-.rt-confetti{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:3}
-.rt-glow{position:absolute;left:50%;top:27%;width:440px;height:440px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,178,228,.5),rgba(255,229,246,.18) 55%,transparent 70%);z-index:1;opacity:0;animation:rtGlowIn .8s ease .1s forwards}
-@keyframes rtGlowIn{to{opacity:1}}
 .rt-inner{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center}
-.rt-hero{position:relative;width:150px;height:150px;display:flex;align-items:center;justify-content:center}
-.rt-rays{position:absolute;inset:-28px;border-radius:50%;background:repeating-conic-gradient(from 0deg,rgba(217,0,141,.13) 0deg 6deg,transparent 6deg 22deg);-webkit-mask:radial-gradient(circle,transparent 40%,#000 42%,#000 66%,transparent 70%);mask:radial-gradient(circle,transparent 40%,#000 42%,#000 66%,transparent 70%);opacity:0;animation:rtRaysIn .9s ease .15s forwards,rtSpin 16s linear 1s infinite}
-@keyframes rtRaysIn{to{opacity:1}}
-@keyframes rtSpin{to{transform:rotate(360deg)}}
-.rt-token{position:relative;width:120px;height:120px;border-radius:50%;background:var(--bg-brand-focus);display:flex;align-items:center;justify-content:center;box-shadow:0 16px 42px rgba(217,0,141,.36);transform:scale(0);animation:rtPop .72s cubic-bezier(.34,1.56,.5,1) .2s forwards}
-.rt-token.float{animation:rtFloat 3.4s ease-in-out infinite}
-.rt-token svg{width:58px;height:58px}
-@keyframes rtPop{0%{transform:scale(0) rotate(-24deg)}60%{transform:scale(1.14) rotate(7deg)}100%{transform:scale(1) rotate(0)}}
-@keyframes rtFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
-.rt-token .shine{position:absolute;inset:0;border-radius:50%;overflow:hidden}
-.rt-token .shine::before{content:"";position:absolute;top:-30%;left:-70%;width:42%;height:160%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transform:rotate(18deg);animation:rtShine 1.3s ease .75s,rtShine 1.4s ease 4.5s}
-@keyframes rtShine{from{left:-70%}to{left:140%}}
-.rt-badge{display:inline-block;font-size:13px;font-weight:700;color:var(--text-positive);background:var(--bg-positive-pri);padding:5px 14px;border-radius:100px;margin-top:22px;opacity:0;animation:rtRise .5s ease .5s forwards}
-.rt-title{font-size:28px;font-weight:700;color:var(--text-pri);margin:14px 0 0;line-height:1.25;opacity:0;animation:rtRise .55s cubic-bezier(.2,.8,.2,1) .6s forwards}
-.rt-sub{font-size:14.5px;color:var(--text-sec);margin:12px 0 0;line-height:1.55;max-width:300px;opacity:0;animation:rtRise .55s ease .72s forwards}.rt-sub b{color:var(--text-pri)}
-.rt-offer{background:var(--bg-positive-pri);border:1px solid var(--stroke-positive);border-radius:16px;padding:14px;margin-top:24px;width:100%;max-width:322px;opacity:0;animation:rtRise .55s ease .84s forwards}
-.rt-offer-h{font-size:14px;font-weight:700;color:var(--text-positive)}
-.rt-offer-rows{display:flex;justify-content:center;gap:7px;margin-top:10px;flex-wrap:wrap}
-.rt-offer-rows span{font-size:12px;font-weight:600;color:var(--text-sec);background:#fff;border:1px solid var(--stroke-positive);border-radius:100px;padding:4px 11px;opacity:0;transform:scale(.7);animation:rtChip .42s cubic-bezier(.34,1.6,.5,1) forwards}
-.rt-offer-rows span:nth-child(1){animation-delay:.98s}.rt-offer-rows span:nth-child(2){animation-delay:1.08s}.rt-offer-rows span:nth-child(3){animation-delay:1.18s}
-@keyframes rtChip{to{opacity:1;transform:scale(1)}}
-.rt-offer-rows span b{color:var(--text-positive)}
-@keyframes rtRise{0%{opacity:0;transform:translateY(16px)}100%{opacity:1;transform:translateY(0)}}
-.rt-cta{margin:0 20px calc(22px + env(safe-area-inset-bottom));background:var(--bg-brand-focus);color:#fff;border:none;font-size:17px;font-weight:700;padding:16px;border-radius:16px;cursor:pointer;font-family:inherit;position:relative;z-index:4;opacity:0;transform:translateY(20px);animation:rtRise .5s ease 1s forwards}
+.rt-eyebrow{font-size:13px;font-weight:700;color:var(--text-positive);background:var(--bg-positive-pri);padding:6px 15px;border-radius:100px;opacity:0;animation:rtRise .5s ease .35s forwards}
+.rt-hero{font-size:33px;font-weight:700;color:var(--text-pri);line-height:1.16;letter-spacing:-.5px;margin:18px 0 0;opacity:0;animation:rtRise .6s cubic-bezier(.2,.8,.2,1) .45s forwards}
+.rt-hero .hl{color:var(--bg-brand-focus)}
+.rt-sub{font-size:15px;color:var(--text-sec);margin:14px 0 0;line-height:1.5;max-width:300px;opacity:0;animation:rtRise .55s ease .6s forwards}
+@keyframes rtRise{0%{opacity:0;transform:translateY(18px)}100%{opacity:1;transform:translateY(0)}}
+.rt-cta{margin:0 20px calc(26px + env(safe-area-inset-bottom));background:var(--bg-brand-focus);color:#fff;border:none;font-size:17px;font-weight:700;padding:17px;border-radius:100px;cursor:pointer;font-family:inherit;position:relative;z-index:3;box-shadow:0 12px 28px rgba(217,0,141,.28);opacity:0;transform:translateY(22px);animation:rtRise .5s ease .8s forwards}
+.rt-cta:active{transform:scale(.985)}
+.fl{position:absolute;z-index:1;opacity:0;animation:flIn .5s ease forwards}
+@keyframes flIn{to{opacity:1}}
+.fl-in{animation:flFloat 3.6s ease-in-out infinite}
+@keyframes flFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-11px)}}
+.fl-chip{background:#fff;border:1.5px solid var(--stroke-positive);color:var(--text-positive);font-weight:700;font-size:13px;padding:8px 14px;border-radius:100px;box-shadow:0 8px 22px rgba(16,16,33,.12);white-space:nowrap}
+.fl-gift{width:58px;height:58px;border-radius:16px;background:var(--bg-brand-focus);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 26px rgba(217,0,141,.32)}
+.fl-gift svg{width:30px;height:30px}
+.fl-coin{filter:drop-shadow(0 8px 14px rgba(184,92,0,.3))}
+@media (prefers-reduced-motion:reduce){.fl-in{animation:none}}
 </style>
 </head>
 <body>
@@ -1555,26 +1544,29 @@ function doRechargeRedeem(opt){
 function openRewardTease(){
   const scr = document.querySelector('.screen[data-s="serviceable"]');
   if(!scr || scr.querySelector('.rt-full')) return;
-  const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches;
-  const m = ciNode(`<div class="rt-full">
-    <div class="rt-glow"></div>
-    <div class="rt-inner">
-      <div class="rt-hero"><div class="rt-rays"></div><div class="rt-token"><span class="shine"></span>${GIFT_WHITE}</div></div>
-      <div class="rt-badge">🎁 आपके लिए खास ऑफर</div>
-      <h2 class="rt-title">बुकिंग पर<br>मुफ्त इंटरनेट दिन! 🎉</h2>
-      <p class="rt-sub">हर रिचार्ज प्लान पर आपको <b>मुफ्त इंटरनेट दिन</b> का रिवॉर्ड मिलेगा — जितना रिचार्ज, उतने मुफ्त दिन।</p>
-      <div class="rt-offer"><div class="rt-offer-h">🎁 जितने दिन का रिचार्ज, उतने दिन मुफ्त</div><div class="rt-offer-rows"><span>7 दिन <b>+7 फ्री</b></span><span>14 दिन <b>+14 फ्री</b></span><span>28 दिन <b>+28 फ्री</b></span></div></div>
-    </div>
-    <button class="rt-cta">आगे बढ़ें ›</button>
-  </div>`);
+  const COIN = `<svg class="fl-coin" width="52" height="52" viewBox="0 0 52 52"><circle cx="26" cy="26" r="24" fill="#E8920F"/><circle cx="26" cy="26" r="19.5" fill="#FFC94D"/><path d="M26 14l3.4 6.9 7.6 1.1-5.5 5.4 1.3 7.6L26 39l-6.8 3.6 1.3-7.6-5.5-5.4 7.6-1.1z" fill="#fff"/></svg>`;
+  const COIN_S = `<svg class="fl-coin" width="40" height="40" viewBox="0 0 52 52"><circle cx="26" cy="26" r="24" fill="#E8920F"/><circle cx="26" cy="26" r="19.5" fill="#FFC94D"/><path d="M26 14l3.4 6.9 7.6 1.1-5.5 5.4 1.3 7.6L26 39l-6.8 3.6 1.3-7.6-5.5-5.4 7.6-1.1z" fill="#fff"/></svg>`;
+  const SPARK = `<svg width="22" height="22" viewBox="0 0 24 24" fill="#85B7EB"><path d="M12 2l1.6 7.4L21 12l-7.4 1.6L12 22l-1.6-8.4L3 12l7.4-1.6z"/></svg>`;
+  const GIFT = `<div class="fl-gift">${GIFT_WHITE}</div>`;
+  const chip = t=>`<div class="fl-chip">🎁 ${t}</div>`;
+  const fl = (pos,rot,delay,dur,inner)=>`<div class="fl" style="${pos};transform:rotate(${rot}deg);animation-delay:${delay}s"><div class="fl-in" style="animation-duration:${dur}s;animation-delay:${delay}s">${inner}</div></div>`;
+  const floats = [
+    fl('top:6%;left:6%',-8,.15,3.4,COIN),
+    fl('top:5%;right:8%',11,.28,3.9,GIFT),
+    fl('top:18%;left:3%',-13,.4,3.5,chip('+7 दिन')),
+    fl('top:24%;right:8%',0,.5,4.2,SPARK),
+    fl('bottom:25%;left:5%',8,.32,3.7,COIN),
+    fl('bottom:21%;right:6%',-9,.44,4.0,chip('+14 दिन')),
+    fl('bottom:14%;left:17%',0,.55,4.3,SPARK),
+    fl('bottom:28%;right:16%',6,.22,3.6,chip('+28 दिन')),
+    fl('bottom:10%;left:8%',-6,.5,3.8,COIN_S)
+  ].join('');
+  const m = ciNode(`<div class="rt-full">${floats}<div class="rt-inner">
+    <div class="rt-eyebrow">🎁 आपके लिए खास ऑफर</div>
+    <h1 class="rt-hero"><span class="hl">मुफ्त इंटरनेट दिन</span><br>हर बुकिंग पर</h1>
+    <p class="rt-sub">जितना रिचार्ज, उतने मुफ्त दिन — हर प्लान पर मिलेंगे।</p>
+  </div><button class="rt-cta">आगे बढ़ें</button></div>`);
   scr.appendChild(m);
-  const token = m.querySelector('.rt-token');
-  later(()=> token && token.classList.add('float'), 960);   /* float only after the pop settles */
-  if(!reduce){
-    const sr = scr.getBoundingClientRect();
-    const fire = ()=>{ const t = token.getBoundingClientRect(); const c=document.createElement('canvas'); c.className='rt-confetti'; m.insertBefore(c, m.firstChild); burstConfetti(c, t.left+t.width/2-sr.left, t.top+t.height/2-sr.top); };
-    later(fire, 360); later(fire, 1550);   /* two waves */
-  }
   m.querySelector('.rt-cta').onclick = ()=>{ m.remove(); goTo('edu1'); };
 }
 
