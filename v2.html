@@ -549,7 +549,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 .fl-chip{background:#fff;border:1.5px solid var(--stroke-positive);color:var(--text-positive);font-weight:700;font-size:13px;padding:8px 14px;border-radius:100px;box-shadow:0 8px 22px rgba(16,16,33,.12);white-space:nowrap}
 .fl-gift{width:58px;height:58px;border-radius:16px;background:var(--bg-brand-focus);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 26px rgba(217,0,141,.32)}
 .fl-gift svg{width:30px;height:30px}
-.fl-coin{filter:drop-shadow(0 8px 14px rgba(184,92,0,.3))}
+.fl-ic{filter:drop-shadow(0 9px 15px rgba(16,16,33,.18))}
 .rt-confetti{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:5}
 @media (prefers-reduced-motion:reduce){.fl-in{animation:none}}
 </style>
@@ -1544,22 +1544,26 @@ function doRechargeRedeem(opt){
 function openRewardTease(){
   const scr = document.querySelector('.screen[data-s="serviceable"]');
   if(!scr || scr.querySelector('.rt-full')) return;
-  const COIN = `<svg class="fl-coin" width="52" height="52" viewBox="0 0 52 52"><circle cx="26" cy="26" r="24" fill="#E8920F"/><circle cx="26" cy="26" r="19.5" fill="#FFC94D"/><path d="M26 14l3.4 6.9 7.6 1.1-5.5 5.4 1.3 7.6L26 39l-6.8 3.6 1.3-7.6-5.5-5.4 7.6-1.1z" fill="#fff"/></svg>`;
-  const COIN_S = `<svg class="fl-coin" width="40" height="40" viewBox="0 0 52 52"><circle cx="26" cy="26" r="24" fill="#E8920F"/><circle cx="26" cy="26" r="19.5" fill="#FFC94D"/><path d="M26 14l3.4 6.9 7.6 1.1-5.5 5.4 1.3 7.6L26 39l-6.8 3.6 1.3-7.6-5.5-5.4 7.6-1.1z" fill="#fff"/></svg>`;
+  const COIN = `<svg class="fl-ic" width="54" height="54" viewBox="0 0 54 54"><circle cx="27" cy="27" r="25" fill="#D9820A"/><circle cx="27" cy="27" r="20.5" fill="#FFC94D"/><path d="M15 21a12 12 0 0 1 9-6.5" stroke="#FFE6A6" stroke-width="3" stroke-linecap="round" fill="none"/><path d="M27 15.5l3.2 6.4 7.1 1-5.1 5 1.2 7.1L27 37.6l-6.4 3.4 1.2-7.1-5.1-5 7.1-1z" fill="#fff"/></svg>`;
+  const TROPHY = `<svg class="fl-ic" width="52" height="54" viewBox="0 0 52 54"><rect x="21" y="35" width="10" height="7" rx="1.5" fill="#C9760A"/><rect x="15" y="42" width="22" height="5.5" rx="2.5" fill="#E8920F"/><path d="M15 11h22v7a11 11 0 0 1-22 0z" fill="#FFC94D"/><path d="M15 12H9.5a5.5 5.5 0 0 0 6 6.5M37 12h5.5a5.5 5.5 0 0 1-6 6.5" stroke="#E8920F" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M26 15.5l1.7 3.4 3.8.5-2.7 2.7.6 3.8L26 24.3l-3.4 1.6.6-3.8-2.7-2.7 3.8-.5z" fill="#fff"/></svg>`;
+  const MEDAL = `<svg class="fl-ic" width="50" height="54" viewBox="0 0 50 54"><path d="M17 5l8 13M33 5l-8 13" stroke="#D4537E" stroke-width="6" stroke-linecap="round"/><circle cx="25" cy="34" r="15" fill="#EF9F27"/><circle cx="25" cy="34" r="11" fill="#FFC94D"/><path d="M25 27l2 4.2 4.6.6-3.3 3.3.8 4.6L25 38.4l-4.1 2.1.8-4.6-3.3-3.3 4.6-.6z" fill="#fff"/></svg>`;
   const SPARK = `<svg width="22" height="22" viewBox="0 0 24 24" fill="#85B7EB"><path d="M12 2l1.6 7.4L21 12l-7.4 1.6L12 22l-1.6-8.4L3 12l7.4-1.6z"/></svg>`;
   const GIFT = `<div class="fl-gift">${GIFT_WHITE}</div>`;
   const chip = t=>`<div class="fl-chip">🎁 ${t}</div>`;
   const fl = (pos,rot,delay,dur,inner)=>`<div class="fl" style="${pos};transform:rotate(${rot}deg);animation-delay:${delay}s"><div class="fl-in" style="animation-duration:${dur}s;animation-delay:${delay}s">${inner}</div></div>`;
   const floats = [
-    fl('top:6%;left:6%',-8,.15,3.4,COIN),
-    fl('top:5%;right:8%',11,.28,3.9,GIFT),
-    fl('top:18%;left:3%',-13,.4,3.5,chip('+1 दिन')),
-    fl('top:24%;right:8%',0,.5,4.2,SPARK),
-    fl('bottom:25%;left:5%',8,.32,3.7,COIN),
-    fl('bottom:21%;right:6%',-9,.44,4.0,chip('+5 दिन')),
-    fl('bottom:14%;left:17%',0,.55,4.3,SPARK),
-    fl('bottom:28%;right:16%',6,.22,3.6,chip('+7 दिन')),
-    fl('bottom:10%;left:8%',-6,.5,3.8,COIN_S)
+    fl('top:5%;left:5%',-8,.14,3.4,COIN),
+    fl('top:4%;right:8%',11,.26,3.9,GIFT),
+    fl('top:16%;left:2%',-13,.36,3.5,chip('+1 दिन')),
+    fl('top:14%;right:4%',9,.46,4.2,chip('+2 दिन')),
+    fl('top:26%;left:10%',0,.5,4.0,SPARK),
+    fl('top:25%;right:9%',-4,.3,3.7,TROPHY),
+    fl('bottom:27%;left:4%',6,.34,3.8,MEDAL),
+    fl('bottom:24%;right:6%',-9,.44,4.0,chip('+7 दिन')),
+    fl('bottom:18%;left:15%',5,.52,4.3,chip('+3 दिन')),
+    fl('bottom:29%;right:16%',-6,.24,3.6,chip('+5 दिन')),
+    fl('bottom:12%;right:13%',8,.4,3.9,chip('+4 दिन')),
+    fl('bottom:14%;left:24%',0,.56,4.1,SPARK)
   ].join('');
   const m = ciNode(`<div class="rt-full">${floats}<div class="rt-inner">
     <div class="rt-eyebrow">🎁 आपके लिए खास ऑफर</div>
