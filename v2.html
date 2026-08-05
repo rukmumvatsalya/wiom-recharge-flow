@@ -551,6 +551,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 .fl-gift svg{width:30px;height:30px}
 .fl-ic{filter:drop-shadow(0 9px 15px rgba(16,16,33,.18))}
 .rt-confetti{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:5}
+.rt-ambient{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
 @media (prefers-reduced-motion:reduce){.fl-in{animation:none}}
 </style>
 </head>
@@ -1541,6 +1542,35 @@ function doRechargeRedeem(opt){
 }
 
 /* ═══ serviceable → reward tease modal ═══ */
+function ambientConfetti(canvas){
+  const ctx = canvas.getContext('2d');
+  const rect = canvas.getBoundingClientRect();
+  const dpr = Math.min(window.devicePixelRatio||1, 2);
+  canvas.width = rect.width*dpr; canvas.height = rect.height*dpr; ctx.scale(dpr,dpr);
+  const W = rect.width, H = rect.height;
+  const cols = ['#D9008D','#008043','#EF9F27','#FFB2E4','#1461CC','#7F77DD','#FFD166'];
+  const parts = [];
+  for(let i=0;i<26;i++){
+    parts.push({ x:Math.random()*W, y:Math.random()*H, vy:0.24+Math.random()*0.38, size:5+Math.random()*6,
+      col:cols[(Math.random()*cols.length)|0], rot:Math.random()*Math.PI*2, vr:(Math.random()-.5)*0.02,
+      sway:Math.random()*Math.PI*2, ss:0.009+Math.random()*0.014, sa:0.3+Math.random()*0.55,
+      shape:Math.random()<0.5?'r':'c', alpha:0.14+Math.random()*0.16 });
+  }
+  function tick(){
+    if(!document.body.contains(canvas)) return;
+    ctx.clearRect(0,0,W,H);
+    for(const p of parts){
+      p.sway+=p.ss; p.y+=p.vy; p.x+=Math.sin(p.sway)*p.sa; p.rot+=p.vr;
+      if(p.y>H+12){ p.y=-12; p.x=Math.random()*W; }
+      ctx.save(); ctx.globalAlpha=p.alpha; ctx.translate(p.x,p.y); ctx.rotate(p.rot); ctx.fillStyle=p.col;
+      if(p.shape==='r') ctx.fillRect(-p.size/2,-p.size/3,p.size,p.size*0.6);
+      else { ctx.beginPath(); ctx.arc(0,0,p.size*0.45,0,6.3); ctx.fill(); }
+      ctx.restore();
+    }
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
 function openRewardTease(){
   const scr = document.querySelector('.screen[data-s="serviceable"]');
   if(!scr || scr.querySelector('.rt-full')) return;
@@ -1573,6 +1603,7 @@ function openRewardTease(){
   scr.appendChild(m);
   const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches;
   if(!reduce){
+    const amb = document.createElement('canvas'); amb.className='rt-ambient'; m.insertBefore(amb, m.firstChild); ambientConfetti(amb);
     const sr = scr.getBoundingClientRect();
     const fire = ()=>{ const c=document.createElement('canvas'); c.className='rt-confetti'; m.appendChild(c); burstConfetti(c, sr.width/2, sr.height*0.15); };
     later(fire, 320); later(fire, 1500);
