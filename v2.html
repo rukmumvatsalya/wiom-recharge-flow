@@ -851,7 +851,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
         </div>
         <div class="statwide rv d3" style="margin-top:12px"><div class="v">पूरे दिन का नेट</div><div class="l">डेटा की कोई लिमिट नहीं</div></div>
       </div>
-      <div class="actions"><button class="cta" data-go="slot">आगे बढ़ें ›</button></div>
+      <div class="actions"><button class="cta" data-go="edu2">रिचार्ज कैसे चलता है?</button></div>
     </section>
 
     <!-- 8 · EDUCATION 2 -->
@@ -864,8 +864,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
           <p class="b2 sec mt8">यही व्योम की खास बात है। कोई महीने का बंधन नहीं।</p>
         </div>
         <div class="daybox rv d2" style="margin-top:28px;margin-bottom:22px">
-          <div class="dayval"><b id="dayNum">1</b><span>दिन का रिचार्ज</span></div>
-          <div id="dayOffer" style="margin-top:12px;display:inline-flex;align-items:center;gap:6px;background:var(--bg-positive-pri);border:1px solid var(--stroke-positive);color:var(--text-positive);font-size:13px;font-weight:700;padding:7px 14px;border-radius:var(--r-pill)"><span style="font-size:15px">🎁</span> +1 दिन फ्री — जब चाहें रिडीम करें</div>
+          <div class="dayval"><b id="dayNum">1</b><span>दिन</span></div>
         </div>
         <div class="sliderwrap rv d2">
           <div class="track" id="track"><i class="trackfill" id="trackFill" style="width:0%"></i></div>
@@ -1073,6 +1072,7 @@ const FLOW = [
   {id:'checking',    name:'नेट चेक कर रहे हैं',      group:'सर्विस'},
   {id:'serviceable', name:'सर्विस है + जगह',        group:'सर्विस'},
   {id:'edu1',        name:'नेट बॉक्स क्या है',       group:'शिक्षा'},
+  {id:'edu2',        name:'रिचार्ज मॉडल',           group:'शिक्षा'},
   {id:'slot',        name:'दिन चुनें',              group:'बुकिंग'},
   {id:'plans',       name:'प्लान लिस्ट (V10)',      group:'बुकिंग'},
   {id:'detail',      name:'रिचार्ज = बुकिंग',       group:'भुगतान'},
@@ -1241,11 +1241,10 @@ function initSlider(){
     const dot = document.createElement('i'); dot.className='tick';
     dot.style.left = (i/(PLANS.length-1))*100 + '%'; track.appendChild(dot);
   });
-  labels.innerHTML = PLANS.map(p=>`<span>${p.days} दिन<i class="tickfree">+${p.welcome} फ्री</i></span>`).join('');
+  labels.innerHTML = PLANS.map(p=>`<span>${p.days} दिन</span>`).join('');
   const render = ()=>{
-    const v = +slider.value, p = PLANS[v];
-    $('#dayNum').textContent = p.days;
-    $('#dayOffer').innerHTML = `<span style="font-size:15px">🎁</span> +${p.welcome} दिन फ्री — जब चाहें रिडीम करें`;
+    const v = +slider.value;
+    $('#dayNum').textContent = PLANS[v].days;
     $$('#tickLabels span').forEach((s,i)=> s.classList.toggle('on', i===v));
     $('#trackFill').style.width = (v/(PLANS.length-1)*100) + '%';
   };
